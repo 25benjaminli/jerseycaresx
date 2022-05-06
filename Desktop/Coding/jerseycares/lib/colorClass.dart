@@ -25,3 +25,5 @@ MaterialColor blue = dispColor(0xFF002E6D);
 const blueC = Color(0xFF002E6D);
 MaterialColor grey = dispColor(0xFFE5E8E8);
 const greyC = Color(0xFFE5E8E8);
+MaterialColor bottomItem = dispColor(0xFF7b7b7b);
+const bottomItemC = Color(0xFF7b7b7b);

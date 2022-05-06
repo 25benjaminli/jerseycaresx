@@ -39,6 +39,8 @@ bool pressedAboutUs = false;
 bool pressedHelp = false;
 bool pressedSponsor = false;
 
+bool selectedBottom = true;
+
 _launchURL() async {
   const url = 'https://www.jerseycares.org/Donate';
   try {
@@ -73,7 +75,7 @@ class _NavBar extends State<NavBar> {
 
   void _onItemTappedHamburger(int index) {
     // print(index);
-
+    selectedBottom = false;
     displayBottom = false;
     setState(() {
       _selectedIndexHamburger = index;
@@ -82,7 +84,14 @@ class _NavBar extends State<NavBar> {
 
   void _onItemTappedBottom(int index) {
     // print(index);
+    selectedBottom = true;
     displayBottom = true;
+    pressedInvolved = false;
+    pressedTrackHours = false;
+    pressedAnnualEvents = false;
+    pressedAboutUs = false;
+    pressedHelp = false;
+    pressedSponsor = false;
     setState(() {
       _selectedIndexBottom = index;
     });
@@ -92,6 +101,7 @@ class _NavBar extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //backgroundColor: teal,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
         ),
@@ -256,7 +266,7 @@ class _NavBar extends State<NavBar> {
           ),
         ],
         currentIndex: _selectedIndexBottom,
-        selectedItemColor: orange,
+        selectedItemColor: selectedBottom ? orange : bottomItem,
         onTap: _onItemTappedBottom,
         showSelectedLabels: false,
         showUnselectedLabels: false,

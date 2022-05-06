@@ -29,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Flexible(
+                    const Flexible(
                       flex: 1,
                       child: Image(
                         image: AssetImage("assets/images/logo.png"),
@@ -57,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 future: Authentication.initializeFirebase(context: context),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Text('Error initializing Firebase');
+                    return const Text('Error initializing Firebase');
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     return GoogleSignInButton();
                   }

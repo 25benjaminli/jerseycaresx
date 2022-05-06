@@ -24,7 +24,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => SignInScreen(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = Offset(-1.0, 0.0);
+        var begin = const Offset(-1.0, 0.0);
         var end = Offset.zero;
         var curve = Curves.ease;
 
@@ -122,9 +122,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     fontSize: 14,
                     letterSpacing: 0.2),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               _isSigningOut
-                  ? CircularProgressIndicator(
+                  ? const CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     )
                   : ElevatedButton(
@@ -149,7 +149,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         Navigator.of(context)
                             .pushReplacement(_routeToSignInScreen());
                       },
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
                         child: Text(
                           'Sign Out',
