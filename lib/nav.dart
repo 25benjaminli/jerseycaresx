@@ -266,7 +266,7 @@ class _NavBar extends State<NavBar> {
           ),
         ],
         currentIndex: _selectedIndexBottom,
-        selectedItemColor: selectedBottom ? orange : bottomItem,
+        selectedItemColor: selectedBottom ? orange : bottomItemColor,
         onTap: _onItemTappedBottom,
         showSelectedLabels: false,
         showUnselectedLabels: false,
