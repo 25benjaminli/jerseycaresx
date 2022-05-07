@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>565386552655-bohaede9tqjgpfji4urrquer702ehihd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.565386552655-bohaede9tqjgpfji4urrquer702ehihd</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>565386552655-err4pp9i21micmg0i0tia8eksj0ol4q4.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD8PFHnmElq2dcV7OR1ErUQtal4qT0WK4E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>565386552655</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.varsitydeveloper.jerseycares</string>
+	<key>PROJECT_ID</key>
+	<string>jersey-cares</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jersey-cares.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:565386552655:ios:43e9769628e87079cfd13a</string>
+</dict>
+</plist>
