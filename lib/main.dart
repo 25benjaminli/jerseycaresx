@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
-import 'nav.dart';
-import 'homepage.dart';
-import 'colorClass.dart';
-import 'sign_in_screen.dart';
+import 'pages/nav.dart';
+import 'pages/homepage.dart';
+import '/colorClass.dart';
+import 'pages/sign_in_screen.dart';
 
 void main() {
   // init firebase HERE

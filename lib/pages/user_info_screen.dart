@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'custom_colors.dart';
+import '/custom_colors.dart';
 import 'sign_in_screen.dart';
-import 'authentication.dart';
+import '/authentication.dart';
 import 'app_bar_title.dart';
 
 class UserInfoScreen extends StatefulWidget {

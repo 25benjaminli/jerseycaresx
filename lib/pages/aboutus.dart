@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'colorClass.dart';
+import '/colorClass.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AboutUsPage extends StatelessWidget {

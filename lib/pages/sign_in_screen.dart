@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'custom_colors.dart';
-import 'authentication.dart';
+import '/custom_colors.dart';
+import '/authentication.dart';
 import 'google_sign_in_button.dart';
 
 class SignInScreen extends StatefulWidget {

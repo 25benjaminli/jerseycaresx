@@ -9,12 +9,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:flutter/http.dart';
-import 'main.dart';
+import '../main.dart';
 import 'aboutus.dart';
 import 'help.dart';
 import 'sponsors.dart';
 import 'trackhours.dart';
-import 'colorClass.dart';
+import '/colorClass.dart';
 import 'getInvolved.dart';
 import 'annualevents.dart';
 import 'actualhomepage.dart';
@@ -101,11 +101,13 @@ class _NavBar extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: teal,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
+        backgroundColor: teal,
+        // title: Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        // ),
+        
       ),
+      
       body: Center(
         child: displayBottom
             ? optionsBottom.elementAt(_selectedIndexBottom)
@@ -271,6 +273,14 @@ class _NavBar extends State<NavBar> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Add your onPressed code here!
+      //   },
+      //   label: const Text("click here lol")
+      //   backgroundColor: Colors.green,
+      //   child: const Icon(Icons.navigation),
+      // ),
     );
   }
 }
