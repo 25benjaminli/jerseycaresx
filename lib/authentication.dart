@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'user_info_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:get/get.dart';
 
 class Authentication {
+  static var googleAccount = Rx<GoogleSignInAccount?>(null);
+  
   static SnackBar customSnackBar({required String content}) {
+    
+  
     return SnackBar(
       backgroundColor: Colors.black,
       content: Text(
@@ -39,23 +44,27 @@ class Authentication {
   static Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
-
+    print("a");
     if (kIsWeb) {
+      
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
       try {
         final UserCredential userCredential =
             await auth.signInWithPopup(authProvider);
-
         user = userCredential.user;
       } catch (e) {
         print(e);
       }
     } else {
+      print("b");
       final GoogleSignIn googleSignIn = GoogleSignIn();
-
+      print("c");
+      
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
+      googleAccount.value = googleSignInAccount;
+      print("d");
 
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =

@@ -6,6 +6,7 @@ import 'colorClass.dart';
 import 'sign_in_screen.dart';
 
 void main() {
+  // init firebase HERE
   runApp(const MyApp());
 }
 

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "565386552655",
+    "project_id": "jersey-cares",
+    "storage_bucket": "jersey-cares.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565386552655:android:ae4e237d156c25d7cfd13a",
+        "android_client_info": {
+          "package_name": "com.example.new_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565386552655-idpp02okn9ps8nekq5cacaglkcm8ub6r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.new_app",
+            "certificate_hash": "d5b87f463fd4c3c68efe979a923b47bac27ecc2c"
+          }
+        },
+        {
+          "client_id": "565386552655-ufm6hu3shk07nrf61pduhfnigf0r24lh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbnYZApXnbkOf_awCofUVjeKO4SXNHPoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565386552655-ufm6hu3shk07nrf61pduhfnigf0r24lh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "565386552655-bohaede9tqjgpfji4urrquer702ehihd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.varsitydeveloper.jerseycares"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
