@@ -4,8 +4,8 @@ import 'pages/nav.dart';
 import 'pages/homepage.dart';
 import '/colorClass.dart';
 import 'pages/sign_in_screen.dart';
-
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+void main() async {
   // init firebase HERE
   runApp(const MyApp());
 }
