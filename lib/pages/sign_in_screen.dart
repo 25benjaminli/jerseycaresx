@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/custom_colors.dart';
+import 'package:jerseycaresapp/colorClass.dart';
 import '/authentication.dart';
 import 'google_sign_in_button.dart';
 
@@ -12,7 +12,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.firebaseNavy,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -28,8 +28,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Flexible(
+                  children: const [
+                    Flexible(
                       flex: 1,
                       child: Image(
                         image: AssetImage("assets/images/logo.png"),
@@ -39,14 +39,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     Text(
                       'Jersey Cares',
                       style: TextStyle(
-                        color: CustomColors.firebaseYellow,
+                        color: tealC,
                         fontSize: 40,
                       ),
                     ),
                     Text(
                       'sign in',
                       style: TextStyle(
-                        color: CustomColors.firebaseOrange,
+                        color: orangeC,
                         fontSize: 40,
                       ),
                     ),
@@ -61,9 +61,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     return GoogleSignInButton();
                   }
-                  return CircularProgressIndicator(
+                  return const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomColors.firebaseOrange,
+                      orangeC,
                     ),
                   );
                 },

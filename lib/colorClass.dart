@@ -27,3 +27,12 @@ MaterialColor grey = dispColor(0xFFE5E8E8);
 const greyC = Color(0xFFE5E8E8);
 MaterialColor bottomItemColor = dispColor(0xFF7b7b7b);
 const bottomItemColorC = Color(0xFF7b7b7b);
+
+class CustomColors {
+  static final Color firebaseNavy = Color(0xFF2C384A);
+  static final Color firebaseOrange = Color(0xFFF57C00);
+  static final Color firebaseAmber = Color(0xFFFFA000);
+  static final Color firebaseYellow = Color(0xFFFFCA28);
+  static final Color firebaseGrey = Color(0xFFECEFF1);
+  static final Color googleBackground = Color(0xFF4285F4);
+}

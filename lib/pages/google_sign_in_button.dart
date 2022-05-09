@@ -42,11 +42,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomePage()
-                        //UserInfoScreen(
-                        //  user: user,
-                        //),
-                        ),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 }
               },
@@ -55,11 +51,15 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                  children: const <Widget>[
+                    Image(
+                      image: AssetImage("assets/images/google_logo.png"),
+                      height: 35.0,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: EdgeInsets.only(left: 10),
                       child: Text(
-                        'Sign in with google',
+                        'Sign in with Google',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.black54,

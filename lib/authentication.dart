@@ -8,10 +8,8 @@ import 'package:get/get.dart';
 
 class Authentication {
   static var googleAccount = Rx<GoogleSignInAccount?>(null);
-  
+
   static SnackBar customSnackBar({required String content}) {
-    
-  
     return SnackBar(
       backgroundColor: Colors.black,
       content: Text(
@@ -46,7 +44,6 @@ class Authentication {
     User? user;
     print("a");
     if (kIsWeb) {
-      
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
       try {
@@ -60,7 +57,7 @@ class Authentication {
       print("b");
       final GoogleSignIn googleSignIn = GoogleSignIn();
       print("c");
-      
+
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
       googleAccount.value = googleSignInAccount;

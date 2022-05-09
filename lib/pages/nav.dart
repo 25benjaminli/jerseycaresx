@@ -1,11 +1,13 @@
 // import 'dart:html';
 
 //import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
 import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:flutter/http.dart';
@@ -20,8 +22,8 @@ import 'annualevents.dart';
 import 'actualhomepage.dart';
 import 'search.dart';
 import 'messagespage.dart';
-import 'profile.dart';
 import 'upcomingevents.dart';
+import 'user_info_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -61,12 +63,14 @@ class _NavBar extends State<NavBar> {
     SponsorsPage(),
   ];
 
-  static const List<Widget> optionsBottom = <Widget>[
+  static List<Widget> optionsBottom = <Widget>[
     ActualHomepage(),
     SearchPage(),
     UpcomingEventsPage(),
     MessagesPage(),
-    ProfilePage(),
+    UserInfoScreen(
+      user: FirebaseAuth.instance.currentUser,
+    ),
   ];
 
   int _selectedIndexHamburger = 0;
@@ -105,9 +109,8 @@ class _NavBar extends State<NavBar> {
         // title: Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         // ),
-        
       ),
-      
+
       body: Center(
         child: displayBottom
             ? optionsBottom.elementAt(_selectedIndexBottom)
