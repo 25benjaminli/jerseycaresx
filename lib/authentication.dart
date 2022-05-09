@@ -72,6 +72,7 @@ class Authentication {
           idToken: googleSignInAuthentication.idToken,
         );
 
+        // sign in with credential, set the current user to this one.
         try {
           final UserCredential userCredential =
               await auth.signInWithCredential(credential);

@@ -102,10 +102,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   ? const CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     )
-                  : ElevatedButton(
+                  : ElevatedButton.icon(
+                    
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
-                          Colors.redAccent,
+                          Colors.white,
                         ),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
@@ -124,19 +125,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         Navigator.of(context)
                             .pushReplacement(_routeToSignInScreen());
                       },
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                        child: Text(
-                          'Sign Out',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 2,
-                          ),
-                        ),
+                      icon: Icon(Icons.door_back_door, color: Colors.black),
+                      label: Text("sign out", style: TextStyle(color: Colors.black)),
+
+                        
                       ),
-                    ),
             ],
           ),
         ),
