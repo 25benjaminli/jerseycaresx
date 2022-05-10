@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'pages/nav.dart';
 class Authentication {
   static var googleAccount = Rx<GoogleSignInAccount?>(null);
 
@@ -31,8 +31,8 @@ class Authentication {
     if (user != null) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => UserInfoScreen(
-            user: user,
+          builder: (context) => NavBar(
+            // user: user,
           ),
         ),
       );
@@ -76,15 +76,6 @@ class Authentication {
           idToken: googleSignInAuthentication.idToken,
         );
 
-        // print("e");
-        // print(user);
-        // print(user!.displayName.toString());
-        // print(auth.currentUser!.email.toString());
-        // print(user.photoURL.toString());
-        // print(user.uid.toString());
-        // print("f");
-
-        
 
 
 

@@ -5,6 +5,9 @@ import 'sign_in_screen.dart';
 import 'package:jerseycaresapp/colorClass.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import '/authentication.dart';
+import 'nav.dart';
+import 'editsettings.dart';
+
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User? user})
@@ -132,6 +135,15 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       label: Text("sign out",
                           style: TextStyle(color: Colors.black)),
                     ),
+                    ElevatedButton.icon(onPressed: () => {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => EditSettingsPage(
+                            // user: user,
+                          ),
+                        ),
+                      )
+                    }, icon: Icon(Icons.create_sharp), label: Text("edit account settings"))
             ],
           ),
         ),
