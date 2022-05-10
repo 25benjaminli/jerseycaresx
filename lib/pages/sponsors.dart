@@ -38,6 +38,7 @@ class SponsorsPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         'assets/images/UBSreal.png',
@@ -45,13 +46,15 @@ class SponsorsPage extends StatelessWidget {
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/RWJ.png',
+                        'assets/images/RWJ.png',
                         height: 100,
                         width: 100,
                       ),
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Image.asset(
                         'assets/images/prudential.png',
@@ -59,7 +62,7 @@ class SponsorsPage extends StatelessWidget {
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/barclays.jpeg',
+                        'assets/images/barclays.jpeg',
                         height: 100,
                         width: 100,
                       ),
@@ -75,7 +78,11 @@ class SponsorsPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: 10),
+
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Image.asset(
                         'assets/images/rao.jpeg',
@@ -83,7 +90,7 @@ class SponsorsPage extends StatelessWidget {
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/vertex.png',
+                        'assets/images/vertex.png',
                         height: 100,
                         width: 100,
                       ),
@@ -99,7 +106,11 @@ class SponsorsPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: 10),
+
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Image.asset(
                         'assets/images/bnp.jpeg',
@@ -107,18 +118,20 @@ class SponsorsPage extends StatelessWidget {
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/metlife.png',
+                        'assets/images/metlife.png',
                         height: 100,
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/fidelity.png',
+                        'assets/images/fidelity.png',
                         height: 100,
                         width: 100,
                       ),
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Image.asset(
                         'assets/images/jpmorgan.png',
@@ -126,7 +139,7 @@ class SponsorsPage extends StatelessWidget {
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/nbacares.jpeg',
+                        'assets/images/nbacares.jpeg',
                         height: 100,
                         width: 100,
                       ),
@@ -142,7 +155,11 @@ class SponsorsPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  SizedBox(height: 10),
+
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Image.asset(
                         'assets/images/goldman.png',
@@ -150,18 +167,21 @@ class SponsorsPage extends StatelessWidget {
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/nasdaq.png',
+                        'assets/images/nasdaq.png',
                         height: 100,
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/bankofamerica.png',
+                        'assets/images/bankofamerica.png',
                         height: 100,
                         width: 100,
                       ),
                     ],
                   ),
+                  SizedBox(height: 15),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Image.asset(
                         'assets/images/lilly.png',
@@ -169,7 +189,7 @@ class SponsorsPage extends StatelessWidget {
                         width: 100,
                       ),
                       Image.asset(
-                        'assets/image/loreal.png',
+                        'assets/images/loreal.png',
                         height: 100,
                         width: 100,
                       ),
