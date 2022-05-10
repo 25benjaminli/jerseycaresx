@@ -16,7 +16,7 @@ class AboutUsPage extends StatelessWidget {
             children: <Widget>[
               Text(
                 "ABOUT US",
-                style: GoogleFonts.quicksand(fontSize: 15),
+                style: GoogleFonts.quicksand(fontSize: 25),
               ),
               Image.asset(
                 'assets/images/ourteam.jpeg',

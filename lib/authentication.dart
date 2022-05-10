@@ -5,6 +5,8 @@ import '/pages/user_info_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Authentication {
   static var googleAccount = Rx<GoogleSignInAccount?>(null);
@@ -41,6 +43,7 @@ class Authentication {
 
   static Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseFirestore f = FirebaseFirestore.instance;
     User? user;
     print("a");
     if (kIsWeb) {
@@ -50,6 +53,7 @@ class Authentication {
         final UserCredential userCredential =
             await auth.signInWithPopup(authProvider);
         user = userCredential.user;
+        print(user);
       } catch (e) {
         print(e);
       }
@@ -72,12 +76,40 @@ class Authentication {
           idToken: googleSignInAuthentication.idToken,
         );
 
+        // print("e");
+        // print(user);
+        // print(user!.displayName.toString());
+        // print(auth.currentUser!.email.toString());
+        // print(user.photoURL.toString());
+        // print(user.uid.toString());
+        // print("f");
+
+        
+
+
+
+
+
+
         // sign in with credential, set the current user to this one.
         try {
           final UserCredential userCredential =
               await auth.signInWithCredential(credential);
 
           user = userCredential.user;
+          CollectionReference users = f.collection("Users"); 
+          var docref = f.collection("Users").doc(auth.currentUser!.uid.toString());
+          var doc = await docref.get();
+          
+          if (!doc.exists){
+            f.collection("Users").doc(auth.currentUser!.uid.toString()).set({
+            "displayName": auth.currentUser!.displayName,
+            "email": auth.currentUser!.email,
+            "photoURL": auth.currentUser!.photoURL,
+            "uid": auth.currentUser!.uid.toString()
+            });
+          }
+
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             ScaffoldMessenger.of(context).showSnackBar(

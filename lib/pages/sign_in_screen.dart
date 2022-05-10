@@ -36,20 +36,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Text(
-                      'Jersey Cares',
-                      style: TextStyle(
-                        color: tealC,
-                        fontSize: 40,
-                      ),
-                    ),
-                    Text(
-                      'sign in',
-                      style: TextStyle(
-                        color: orangeC,
-                        fontSize: 40,
-                      ),
-                    ),
                   ],
                 ),
               ),
