@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'sign_in_screen.dart';
 import 'package:jerseycaresapp/colorClass.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 import '/authentication.dart';
 
 class UserInfoScreen extends StatefulWidget {
@@ -103,7 +105,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     )
                   : ElevatedButton.icon(
-                    
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                           Colors.white,
@@ -125,11 +126,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         Navigator.of(context)
                             .pushReplacement(_routeToSignInScreen());
                       },
-                      icon: Icon(Icons.door_back_door, color: Colors.black),
-                      label: Text("sign out", style: TextStyle(color: Colors.black)),
-
-                        
-                      ),
+                      icon: Icon(CupertinoIcons.arrow_uturn_left_circle_fill,
+                          color: Colors.black),
+                      label: Text("sign out",
+                          style: TextStyle(color: Colors.black)),
+                    ),
             ],
           ),
         ),
