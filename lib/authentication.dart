@@ -106,8 +106,14 @@ class Authentication {
             "displayName": auth.currentUser!.displayName,
             "email": auth.currentUser!.email,
             "photoURL": auth.currentUser!.photoURL,
-            "uid": auth.currentUser!.uid.toString()
+            "uid": auth.currentUser!.uid.toString(),
             });
+
+            // render sign up features
+
+            
+
+
           }
 
         } on FirebaseAuthException catch (e) {

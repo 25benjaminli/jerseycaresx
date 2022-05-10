@@ -29,7 +29,7 @@ class SponsorsPage extends StatelessWidget {
             const SizedBox(height: 30),
             const Text(
               "LEADERSHIP - \$125,000 - \$249,999",
-              style: TextStyle(fontSize: 25, color: blueC),
+              style: TextStyle(fontSize: 20, color: blueC),
               textAlign: TextAlign.center,
             ),
 
