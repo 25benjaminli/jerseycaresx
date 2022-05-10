@@ -38,6 +38,7 @@ dependencies:
   flutter_feather_icons: ^2.0.0+1
   google_fonts: ^2.3.2
   cloud_firestore: ^3.1.14
+  getwidget: ^2.0.5
 
 dev_dependencies:
   flutter_test:
