@@ -17,7 +17,7 @@ class ActualHomepage extends StatelessWidget {
           children: <Widget>[
             Text("Welcome to the Homepage"),
             Expanded(
-              
+              flex: 8,
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance.collection('Posts').snapshots(),
                 builder: (
