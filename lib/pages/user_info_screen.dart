@@ -7,7 +7,9 @@ import 'package:cupertino_icons/cupertino_icons.dart';
 import '/authentication.dart';
 import 'nav.dart';
 import 'editsettings.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:class_to_map/class_to_map.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User? user})
@@ -50,6 +52,17 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
     super.initState();
   }
+
+  Future<DocumentSnapshot> getAboutMe() async {
+    DocumentSnapshot user = await FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid.toString()).get();
+
+    return user;
+    
+  }
+
+  
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +116,26 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ),
               ),
               const SizedBox(height: 16.0),
+              // future builder for displaying the "about" information
+              
+              FutureBuilder(
+                future: getAboutMe(),
+                builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text('Error initializing Firebase');
+                  } else if (snapshot.connectionState == ConnectionState.done) {
+                    print("lololol");
+                    var datalist = snapshot.data!.data();
+                    return Text("${datalist}");
+                    // return Text('hi ${o!.toMap()['about']}');
+                  }
+                  return const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      orangeC,
+                    ),
+                  );
+                },
+              ),
               const Spacer(),
               _isSigningOut
                   ? const CircularProgressIndicator(
