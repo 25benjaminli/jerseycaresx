@@ -27,6 +27,8 @@ MaterialColor grey = dispColor(0xFFE5E8E8);
 const greyC = Color(0xFFE5E8E8);
 MaterialColor bottomItemColor = dispColor(0xFF7b7b7b);
 const bottomItemColorC = Color(0xFF7b7b7b);
+MaterialColor black = dispColor(0xFF1B1C1E);
+const blackC = Color(0xFF1B1C1E);
 
 class CustomColors {
   static final Color firebaseNavy = Color(0xFF2C384A);

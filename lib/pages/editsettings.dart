@@ -43,6 +43,8 @@ class _EditSettingsPageState extends State<EditSettingsPage> {
         Align(
            alignment: Alignment.center, 
            child: ElevatedButton.icon(icon: Icon(Icons.save), onPressed: () {
+              
+              
               FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid.toString()).update({"about": myController.text.toString()});
               Navigator.of(context).pushReplacement(
               MaterialPageRoute(
