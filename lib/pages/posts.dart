@@ -21,6 +21,9 @@ class PostsPage extends StatefulWidget {
 
 class _PostsPageState extends State<PostsPage> {
   final Caption = TextEditingController();
+  final Title = TextEditingController();
+  // final  = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class _PostsPageState extends State<PostsPage> {
         TextField(decoration: InputDecoration(
           label: Text("Post - Title"),
           
-        ),),
+        ), controller: Title),
         TextField(decoration: InputDecoration(
           label: Text("Post - Caption"),
           
@@ -50,6 +53,7 @@ class _PostsPageState extends State<PostsPage> {
               
               
               FirebaseFirestore.instance.collection("Posts").doc().set({
+                "title": Title.text,
                 "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
                 "caption": Caption.text,
                 "photoURL": FirebaseAuth.instance.currentUser!.photoURL.toString(),
