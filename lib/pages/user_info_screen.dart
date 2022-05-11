@@ -118,23 +118,24 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               const SizedBox(height: 16.0),
               // future builder for displaying the "about" information
               
-              FutureBuilder(
-                future: getAboutMe(),
-                builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-                  if (snapshot.hasError) {
-                    return const Text('Error initializing Firebase');
-                  } else if (snapshot.connectionState == ConnectionState.done) {
-                    print("lololol");
-                    var datalist = snapshot.data!.data();
-                    return Text("${datalist}");
-                    // return Text('hi ${o!.toMap()['about']}');
+              StreamBuilder(
+                stream: FirebaseFirestore.instance.collection('Users').where(
+                  "uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString()
+                  ).snapshots(),
+                builder: (
+                  BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot
+                ) { 
+                  if (!snapshot.hasData) return const SizedBox.shrink(); 
+                      
+                      final docDataA = (snapshot.data!.docs[0].data());
+                      print("docdata: " + docDataA.toString());
+                      final docData = docDataA! as Map<String, dynamic>;
+                      print("docdata2: " + docData['about'].toString());
+                      final about = (docData['about']).toString(); 
+                      
+                      return Text('${about}', style: TextStyle(color: Colors.black));
                   }
-                  return const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      orangeC,
-                    ),
-                  );
-                },
               ),
               const Spacer(),
               _isSigningOut
