@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'nav.dart';
+import 'dart:io';
 import '/colorclass.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,11 +28,50 @@ class _PostsPageState extends State<PostsPage> {
   final Caption = TextEditingController();
   final Title = TextEditingController();
   // final  = TextEditingController();
-  String imageUrl = '';
-  uploadImage() async {
-    final _firebaseStorage = FirebaseStorage.instance;
-    final _imagePicker = ImagePicker();
-    PickedFile image;
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+
+  File? _photo;
+  final ImagePicker _picker = ImagePicker();
+
+  Future imgFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _photo = File(pickedFile.path);
+        uploadFile();
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future imgFromCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedFile != null) {
+        _photo = File(pickedFile.path);
+        uploadFile();
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future uploadFile() async {
+    if (_photo == null) return;
+    final fileName = basename(_photo!.path);
+    final destination = 'files/$fileName';
+
+    try {
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref(destination)
+          .child('file/');
+      await ref.putFile(_photo!);
+    } catch (e) {
+      print('error occured');
+    }
   }
 
   @override
@@ -54,22 +95,6 @@ class _PostsPageState extends State<PostsPage> {
         SizedBox(
           height: 20.0,
         ),
-        RaisedButton(
-          child: Text("Upload Image",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20)),
-          onPressed: () {},
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
-              side: BorderSide(color: Colors.blue)),
-          elevation: 5.0,
-          color: Colors.blue,
-          textColor: Colors.white,
-          padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
-          splashColor: Colors.grey,
-        ),
 
         Align(
             alignment: Alignment.center,
@@ -80,8 +105,7 @@ class _PostsPageState extends State<PostsPage> {
                     "title": Title.text,
                     "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
                     "caption": Caption.text,
-                    "photoURL":
-                        FirebaseAuth.instance.currentUser!.photoURL.toString(),
+                    "photoURL": _photo.toString(),
                   });
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -91,8 +115,70 @@ class _PostsPageState extends State<PostsPage> {
                     ),
                   );
                 },
-                label: Text("post")))
+                label: Text("post"))),
+        Center(
+          child: GestureDetector(
+            onTap: () {
+              _showPicker(context);
+            },
+            child: CircleAvatar(
+              radius: 55,
+              backgroundColor: Color(0xffFDCF09),
+              child: _photo != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.file(
+                        _photo!,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.fitHeight,
+                      ),
+                    )
+                  : Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(50)),
+                      width: 100,
+                      height: 100,
+                      child: Icon(
+                        Icons.camera_alt,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+            ),
+          ),
+        )
       ],
     ));
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Gallery'),
+                      onTap: () {
+                        imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

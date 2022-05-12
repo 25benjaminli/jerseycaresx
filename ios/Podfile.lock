@@ -620,12 +620,19 @@ PODS:
   - Firebase/Firestore (8.15.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.15.0)
+  - Firebase/Storage (8.15.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 8.15.0)
   - firebase_auth (3.3.17):
     - Firebase/Auth (= 8.15.0)
     - firebase_core
     - Flutter
   - firebase_core (1.16.0):
     - Firebase/CoreOnly (= 8.15.0)
+    - Flutter
+  - firebase_storage (10.2.15):
+    - Firebase/Storage (= 8.15.0)
+    - firebase_core
     - Flutter
   - FirebaseAuth (8.15.0):
     - FirebaseCore (~> 8.0)
@@ -654,6 +661,9 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30908.0)
+  - FirebaseStorage (8.15.0):
+    - FirebaseCore (~> 8.0)
+    - GTMSessionFetcher/Core (~> 1.5)
   - Flutter (1.0.0)
   - google_sign_in_ios (0.0.1):
     - Flutter
@@ -752,6 +762,8 @@ PODS:
   - nanopb/encode (2.30908.0)
   - path_provider_ios (0.0.1):
     - Flutter
+  - permission_handler_apple (9.0.4):
+    - Flutter
   - PromisesObjC (2.1.0)
   - url_launcher_ios (0.0.1):
     - Flutter
@@ -760,10 +772,12 @@ DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
+  - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -776,6 +790,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
+    - FirebaseStorage
     - GoogleDataTransport
     - GoogleSignIn
     - GoogleUtilities
@@ -795,6 +810,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
+  firebase_storage:
+    :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
   google_sign_in_ios:
@@ -803,6 +820,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -814,10 +833,12 @@ SPEC CHECKSUMS:
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
   firebase_auth: 99f8d104a93f4424a4b3b2c4cc5b7596f8181eb7
   firebase_core: 6ef152b7d6a361e24105e2cc56ab458f1f8367fe
+  firebase_storage: 5601da26ed29e80bee1641d4f3a833abbba8132e
   FirebaseAuth: 3e73bf8abf4fbb40f8b421f361f4cc48ee57388c
   FirebaseCore: 5743c5785c074a794d35f2fff7ecc254a91e08b1
   FirebaseCoreDiagnostics: 92e07a649aeb66352b319d43bdd2ee3942af84cb
   FirebaseFirestore: d7023faff8e1b4fd69d0adbcf18e65129bc03842
+  FirebaseStorage: 8019af461599b2c3bc61c6a5dbdfa3d2de66a4d9
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   google_sign_in_ios: ed71c0dbddfba8b1ea9aa210dbda695f46bf51bd
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
@@ -832,6 +853,7 @@ SPEC CHECKSUMS:
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
