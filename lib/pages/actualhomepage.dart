@@ -17,7 +17,7 @@ class ActualHomepage extends StatelessWidget {
           children: <Widget>[
             Text("Welcome to the Homepage"),
             Expanded(
-              flex: 8,
+              flex: 20,
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance.collection('Posts').snapshots(),
                 builder: (
@@ -33,7 +33,9 @@ class ActualHomepage extends StatelessWidget {
                         print("docdata " + index.toString());
                         print(docData);
                         final title = (docData['title']); 
-                        final caption = (docData['caption']); 
+                        final caption = (docData['caption']);
+                        final photoURL = (docData['photoURL']); 
+
                         var username;
                         print("lol");
                         // grab username from firestore
@@ -43,9 +45,22 @@ class ActualHomepage extends StatelessWidget {
                         print("Hihihii");
                         // String s = FirebaseAuth.instance.currentUser.photoURL;
                         print(username);
-                        return ListTile(
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [ ListTile(
                           title: Text(title),
-                          subtitle: Text(caption),
+                          subtitle: Text(caption)),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image(
+                              image: NetworkImage(
+                               photoURL),
+                               width: 35,
+                               height: 35,
+                            ),
+                          ), 
+                          ]                        
+
                           // trailing: FirebaseAuth.instance.currentUser != null ? Image.network(FirebaseAuth.instance.currentUser!.photoURL) : ,
                         );
                       },

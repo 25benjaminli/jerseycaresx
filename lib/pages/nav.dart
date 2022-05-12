@@ -4,6 +4,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:jerseycaresapp/pages/September11.dart';
 import 'package:url_launcher/url_launcher.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../main.dart';
 import 'aboutus.dart';
 import 'help.dart';
+import 'martinluther.dart';
 import 'sponsors.dart';
 import 'trackhours.dart';
 import '/colorClass.dart';
@@ -27,10 +29,13 @@ import 'user_info_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
+  
+  
+  
 
   @override
   State<StatefulWidget> createState() {
-    return _NavBar();
+    return _NavBar.bottom(0);
   }
 }
 
@@ -53,6 +58,15 @@ _launchURL() async {
 }
 
 class _NavBar extends State<NavBar> {
+  int _selectedIndexHamburger = 0;
+  int _selectedIndexBottom = 0;
+  bool displayBottom = true;
+
+
+  _NavBar.hamburger(this._selectedIndexHamburger);
+  _NavBar.bottom(this._selectedIndexBottom);
+
+
   static const List<Widget> optionsHamburger = <Widget>[
     GetInvolvedPage(),
     // donate
@@ -73,9 +87,12 @@ class _NavBar extends State<NavBar> {
     ),
   ];
 
-  int _selectedIndexHamburger = 0;
-  int _selectedIndexBottom = 0;
-  bool displayBottom = true;
+  static List<Widget> optionsHidden = <Widget>[
+    September11(),
+    MartinLutherPage(),
+  ];
+
+  
 
   void _onItemTappedHamburger(int index) {
     // print(index);
