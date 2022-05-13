@@ -51,7 +51,7 @@ class GetInvolvedPage extends StatelessWidget {
                   ),
                 ]),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 "FELLOWSHIP",
                 style: TextStyle(
@@ -75,13 +75,13 @@ class GetInvolvedPage extends StatelessWidget {
                     fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/fellowship.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 "HOW TO APPLY",
                 style: TextStyle(
@@ -129,13 +129,13 @@ class GetInvolvedPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/apply.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 "YOUTH WORKFORCE DEVELOPMENT FELLOWSHIP",
                 style: TextStyle(
@@ -155,13 +155,7 @@ class GetInvolvedPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
-              Image.asset(
-                'assets/images/workforce.png',
-                height: 200,
-                width: 200,
-              ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Text(
                 "Our Fellows will serve as stewards and ambassadors of Jersey Cares and will drive social change by leading well-managed, sustainable projects and programs at various non-profit agencies. Not only will their work strengthen and leverage community assets and meet community-identified needs, but their management will be underscored with a series of workforce development training and/or workshops at a Newark company that will include leadership competencies, resume/interviewing skills and culminate with a “Day of Demonstration.”",
                 style: GoogleFonts.quicksand(
@@ -171,27 +165,13 @@ class GetInvolvedPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 10),
-              Text(
-                "Get inspired to help by watching this video of Senator Cory Booker addressing a cohort of Rutgers University Newark students at a Jersey Cares program graduation. Click Here",
-                style: GoogleFonts.quicksand(
-                  fontSize: 15,
-                  color: blackC,
-                  height: 1.5,
-                ),
-                textAlign: TextAlign.center,
+              const SizedBox(height: 50),
+              Image.asset(
+                'assets/images/workforce.png',
+                height: 200,
+                width: 200,
               ),
-              const SizedBox(height: 10),
-              Text(
-                "If you're interested in learning more about how to get involved please contact, Tatiana Sava at (973) 533-1993 or tatiana@jerseycares.org.",
-                style: GoogleFonts.quicksand(
-                  fontSize: 15,
-                  color: blackC,
-                  height: 1.5,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 "SPONSORSHIP",
                 style: TextStyle(
@@ -211,13 +191,13 @@ class GetInvolvedPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/sponsorship.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 "LEADERSHIP",
                 style: TextStyle(
@@ -237,13 +217,13 @@ class GetInvolvedPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/leadership.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 "SKILLS-BASED VOLUNTEER",
                 style: TextStyle(
@@ -263,13 +243,12 @@ class GetInvolvedPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/skill.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 30),
             ])));
   }
 }

@@ -18,6 +18,7 @@ class SponsorsPage extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 25,
                       color: blueC,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
@@ -25,15 +26,16 @@ class SponsorsPage extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 20,
                       color: tealC,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 50),
                   Text(
                     "LEADERSHIP - \$125,000 - \$249,999",
                     style: GoogleFonts.quicksand(
                       fontSize: 20,
-                      color: Colors.white70,
-                      backgroundColor: tealC,
+                      color: orangeC,
+                      fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -54,7 +56,6 @@ class SponsorsPage extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Image.asset(
                         'assets/images/prudential.png',
@@ -68,21 +69,15 @@ class SponsorsPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 50),
                   Text(
                     "PREMIER - \$100,000 - \$124,999",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 20,
-                      color: Colors.white70,
-                      backgroundColor: tealC,
-                    ),
+                    style: GoogleFonts.quicksand(fontSize: 20, color: orangeC),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Image.asset(
                         'assets/images/rao.jpeg',
@@ -96,21 +91,18 @@ class SponsorsPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 50),
                   Text(
                     "PROMINENT - \$50,000 - \$74,999",
                     style: GoogleFonts.quicksand(
                       fontSize: 20,
-                      color: Colors.white70,
-                      backgroundColor: tealC,
+                      color: orangeC,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Image.asset(
                         'assets/images/bnp.jpeg',
@@ -131,7 +123,6 @@ class SponsorsPage extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Image.asset(
                         'assets/images/jpmorgan.png',
@@ -145,21 +136,18 @@ class SponsorsPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 50),
                   Text(
                     "PATRON - \$25,000 - \$49,999",
                     style: GoogleFonts.quicksand(
                       fontSize: 20,
-                      color: Colors.white70,
-                      backgroundColor: tealC,
+                      color: orangeC,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Image.asset(
                         'assets/images/goldman.png',
@@ -181,7 +169,6 @@ class SponsorsPage extends StatelessWidget {
                   SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Image.asset(
                         'assets/images/lilly.png',

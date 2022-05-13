@@ -57,13 +57,13 @@ class AboutUsPage extends StatelessWidget {
                     fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/vision.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               const Text(
                 "MISSION",
                 style: TextStyle(
@@ -80,13 +80,13 @@ class AboutUsPage extends StatelessWidget {
                     fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/mission.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
               const Text(
                 "OPPORTUNITY YOUTH ENGAGEMENT",
                 style: TextStyle(
@@ -103,13 +103,13 @@ class AboutUsPage extends StatelessWidget {
                     fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/youthengagement.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               const Text(
                 "HISTORY",
                 style: TextStyle(
@@ -133,13 +133,13 @@ class AboutUsPage extends StatelessWidget {
                     fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/history.png',
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               const Text(
                 "VOLUNTEER TODAY!",
                 style: TextStyle(
@@ -156,7 +156,7 @@ class AboutUsPage extends StatelessWidget {
                     fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               Image.asset(
                 'assets/images/volunteertoday.png',
                 height: 200,
