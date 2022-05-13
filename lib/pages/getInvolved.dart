@@ -38,7 +38,7 @@ class GetInvolvedPage extends StatelessWidget {
                         fontSize: 25,
                         color: blueC,
                         fontWeight: FontWeight.bold,
-                        height: 1.4),
+                        height: 1.5),
                   ),
                   Text(
                     "Providing NJ Youth with Career Opportunities",
@@ -47,7 +47,7 @@ class GetInvolvedPage extends StatelessWidget {
                         fontSize: 20,
                         color: tealC,
                         fontWeight: FontWeight.bold,
-                        height: 1.4),
+                        height: 1.5),
                   ),
                 ]),
               ),
@@ -58,22 +58,28 @@ class GetInvolvedPage extends StatelessWidget {
                     fontSize: 20,
                     color: orangeC,
                     fontWeight: FontWeight.bold,
-                    height: 1.4),
+                    height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
                 "Jersey Cares is committed to closing the opportunity gap in New Jersey. We enhance the professional development of young people and reduce youth unemployment through two key workforce development programs; the Youth Workforce Development Fellowship noted below and our Park Ambassador, Summer Youth Employment Program.",
                 style: GoogleFonts.quicksand(
-                    fontSize: 15, color: blackC, height: 1.4),
+                    fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
                 "Are you ready to become the next Jersey Cares Fellow?",
                 style: GoogleFonts.quicksand(
-                    fontSize: 15, color: blackC, height: 1.4),
+                    fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              Image.asset(
+                'assets/images/fellowship.png',
+                height: 200,
+                width: 200,
               ),
               const SizedBox(height: 30),
               const Text(
@@ -82,21 +88,21 @@ class GetInvolvedPage extends StatelessWidget {
                     fontSize: 20,
                     color: orangeC,
                     fontWeight: FontWeight.bold,
-                    height: 1.4),
+                    height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
                 "1. Create a volunteer profile at the Jersey Cares website: www.jerseycares.org/volunteer-sign-up",
                 style: GoogleFonts.quicksand(
-                    fontSize: 15, color: blackC, height: 1.4),
+                    fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
-                "Complete the Fellowship Application. www.jerseycares.org/fellowship_application (please note, you must be logged into your Jersey Cares account before clicking this link).",
+                "2. Complete the Fellowship Application. www.jerseycares.org/fellowship_application (please note, you must be logged into your Jersey Cares account before clicking this link).",
                 style: GoogleFonts.quicksand(
-                    fontSize: 15, color: blackC, height: 1.4),
+                    fontSize: 15, color: blackC, height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -106,7 +112,7 @@ class GetInvolvedPage extends StatelessWidget {
                   style: GoogleFonts.quicksand(
                       fontSize: 15,
                       color: blueC,
-                      height: 1.4,
+                      height: 1.5,
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
@@ -118,10 +124,16 @@ class GetInvolvedPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                   fontStyle: FontStyle.italic,
                 ),
                 textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              Image.asset(
+                'assets/images/apply.png',
+                height: 200,
+                width: 200,
               ),
               const SizedBox(height: 30),
               const Text(
@@ -130,7 +142,7 @@ class GetInvolvedPage extends StatelessWidget {
                     fontSize: 20,
                     color: orangeC,
                     fontWeight: FontWeight.bold,
-                    height: 1.4),
+                    height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -139,17 +151,23 @@ class GetInvolvedPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 30),
+              Image.asset(
+                'assets/images/workforce.png',
+                height: 200,
+                width: 200,
+              ),
+              const SizedBox(height: 30),
               Text(
                 "Our Fellows will serve as stewards and ambassadors of Jersey Cares and will drive social change by leading well-managed, sustainable projects and programs at various non-profit agencies. Not only will their work strengthen and leverage community assets and meet community-identified needs, but their management will be underscored with a series of workforce development training and/or workshops at a Newark company that will include leadership competencies, resume/interviewing skills and culminate with a “Day of Demonstration.”",
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -159,7 +177,7 @@ class GetInvolvedPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -169,7 +187,7 @@ class GetInvolvedPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -180,7 +198,7 @@ class GetInvolvedPage extends StatelessWidget {
                     fontSize: 20,
                     color: orangeC,
                     fontWeight: FontWeight.bold,
-                    height: 1.4),
+                    height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -189,9 +207,15 @@ class GetInvolvedPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                 ),
                 textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              Image.asset(
+                'assets/images/sponsorship.png',
+                height: 200,
+                width: 200,
               ),
               const SizedBox(height: 30),
               const Text(
@@ -200,7 +224,7 @@ class GetInvolvedPage extends StatelessWidget {
                     fontSize: 20,
                     color: orangeC,
                     fontWeight: FontWeight.bold,
-                    height: 1.4),
+                    height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -209,9 +233,15 @@ class GetInvolvedPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                 ),
                 textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              Image.asset(
+                'assets/images/leadership.png',
+                height: 200,
+                width: 200,
               ),
               const SizedBox(height: 30),
               const Text(
@@ -220,7 +250,7 @@ class GetInvolvedPage extends StatelessWidget {
                     fontSize: 20,
                     color: orangeC,
                     fontWeight: FontWeight.bold,
-                    height: 1.4),
+                    height: 1.5),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -229,10 +259,17 @@ class GetInvolvedPage extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 15,
                   color: blackC,
-                  height: 1.4,
+                  height: 1.5,
                 ),
                 textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 30),
+              Image.asset(
+                'assets/images/skill.png',
+                height: 200,
+                width: 200,
+              ),
+              const SizedBox(height: 30),
             ])));
   }
 }
