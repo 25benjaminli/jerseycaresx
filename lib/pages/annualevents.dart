@@ -16,8 +16,8 @@ class AnnualEventsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    height: 60,
-                    width: 300,
+                    height: 70,
+                    width: 310,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: blueC,
@@ -27,34 +27,44 @@ class AnnualEventsPage extends StatelessWidget {
                     child: Column(children: [
                       Text(
                         "ANNUAL EVENTS",
-                        style:
-                            GoogleFonts.quicksand(fontSize: 25, color: blueC),
+                        style: GoogleFonts.quicksand(
+                            fontSize: 25,
+                            color: blueC,
+                            fontWeight: FontWeight.bold,
+                            height: 1.4),
                       ),
                       Text(
                         "Turn a Day Off Into a Day On",
                         style: GoogleFonts.quicksand(
-                          fontSize: 20,
-                          color: tealC,
-                        ),
+                            fontSize: 20,
+                            color: tealC,
+                            fontWeight: FontWeight.bold,
+                            height: 1.4),
                       ),
                     ]),
                   ),
                   const SizedBox(height: 30),
                   const Text(
                     "DR. MARTIN LUTHER KING JR. DAY OF SERVICE",
-                    style: TextStyle(fontSize: 20, color: orangeC),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: orangeC,
+                        fontWeight: FontWeight.bold,
+                        height: 1.4),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     "The Jersey Cares Martin Luther King, Jr. Day of Service engages people across the state to embody Dr. King's vision and bring people of all ages and backgrounds together, strengthening their communities and building a stronger New Jersey.",
-                    style: GoogleFonts.quicksand(fontSize: 15, color: blackC),
+                    style: GoogleFonts.quicksand(
+                        fontSize: 15, color: blackC, height: 1.4),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     "In 2022, over 550 volunteers across 6 virutal and 7 in-person opportunities honored Dr. King's legacy in projects designed to aid the refugee community with getting a restful night’s sleep, remind the senior citizen community that they are loved and appreciated, empower communities of color by advocating for social justice, keep economically disadvantaged communities warm through the winter months, and more.",
-                    style: GoogleFonts.quicksand(fontSize: 15, color: blackC),
+                    style: GoogleFonts.quicksand(
+                        fontSize: 15, color: blackC, height: 1.4),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 30),
@@ -64,16 +74,20 @@ class AnnualEventsPage extends StatelessWidget {
                         fontSize: 15,
                         color: blackC,
                         fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),
+                        fontStyle: FontStyle.italic,
+                        height: 1.4),
                     textAlign: TextAlign.center,
                   ),
-                  Image.asset(
-                    'assets/images/martinluther.png',
-                    height: 300,
-                    width: 300,
-                  ),
+                  const SizedBox(height: 10),
                   ElevatedButton(
-                      child: const Text('More Info'),
+                      child: Text(
+                        'More Info',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            height: 1.4),
+                      ),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
@@ -84,37 +98,51 @@ class AnnualEventsPage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: orangeC,
                       )),
-                  const SizedBox(height: 30),
+                  Image.asset(
+                    'assets/images/martinluther.png',
+                    height: 300,
+                    width: 300,
+                  ),
                   const Text(
                     "SEPTEMBER 11TH NATIONAL DAY OF SERVICE & REMEMBRANCE",
-                    style: TextStyle(fontSize: 20, color: orangeC),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: orangeC,
+                        fontWeight: FontWeight.bold,
+                        height: 1.4),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 30),
                   Text(
                     "In 2021, as part of the national movement to preserve September 11th as a day of service and remembrance, and in honor of the 20th Anniversary, Jersey Cares facilitated volunteer projects for volunteers both virtually and in-person to support communities strongly affected by the events of 9/11. ",
-                    style: GoogleFonts.quicksand(fontSize: 15, color: blackC),
+                    style: GoogleFonts.quicksand(
+                        fontSize: 15, color: blackC, height: 1.4),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     "Volunteers honored the day through projects such as creating thank-you cards for first responders, landscaping at a local park, and assembling You Matter Kits for students in the Jersey City community. Through these projects, volunteers worked to make our communities stronger on a day that was intended to tear them apart.",
-                    style: GoogleFonts.quicksand(fontSize: 15, color: blackC),
+                    style: GoogleFonts.quicksand(
+                        fontSize: 15, color: blackC, height: 1.4),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     "Our September 11th Day of Service will next take place in 2026 for the 25th Anniversary.",
-                    style: GoogleFonts.quicksand(fontSize: 15, color: blackC),
+                    style: GoogleFonts.quicksand(
+                        fontSize: 15, color: blackC, height: 1.4),
                     textAlign: TextAlign.center,
                   ),
-                  Image.asset(
-                    'assets/images/dayofservice.png',
-                    height: 300,
-                    width: 300,
-                  ),
+                  const SizedBox(height: 30),
                   ElevatedButton(
-                      child: const Text('More Info'),
+                      child: Text(
+                        'More Info',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            height: 1.4),
+                      ),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
@@ -125,6 +153,11 @@ class AnnualEventsPage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: orangeC,
                       )),
+                  Image.asset(
+                    'assets/images/dayofservice.png',
+                    height: 300,
+                    width: 300,
+                  ),
                 ])));
   }
 }
