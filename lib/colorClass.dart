@@ -29,6 +29,8 @@ MaterialColor bottomItemColor = dispColor(0xFF7b7b7b);
 const bottomItemColorC = Color(0xFF7b7b7b);
 MaterialColor black = dispColor(0xFF1B1C1E);
 const blackC = Color(0xFF1B1C1E);
+//const maxOpacity = Colors.black.withOpacity(0.5);
+//const minOpacity = 
 
 class CustomColors {
   static final Color firebaseNavy = Color(0xFF2C384A);

@@ -89,7 +89,7 @@ class AnnualEventsPage extends StatelessWidget {
                             height: 1.4),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const MartinLutherPage(),
                           ),
@@ -144,7 +144,7 @@ class AnnualEventsPage extends StatelessWidget {
                             height: 1.4),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const September11(),
                           ),
