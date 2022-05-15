@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'nav.dart';
 import 'dart:io';
 import '/colorclass.dart';
 import 'package:path/path.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,8 +29,7 @@ class _PostsPageState extends State<PostsPage> {
   final Caption = TextEditingController();
   final Title = TextEditingController();
   // final  = TextEditingController();
-  firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
+  FirebaseStorage storage = FirebaseStorage.instance;
 
   File? _photo;
   final ImagePicker _picker = ImagePicker();
@@ -62,15 +62,16 @@ class _PostsPageState extends State<PostsPage> {
   Future uploadFile() async {
     if (_photo == null) return;
     final fileName = basename(_photo!.path);
-    final destination = 'files/$fileName';
+    final destination = 'file/';
+    print("dest: " + destination);
 
     try {
-      final ref = firebase_storage.FirebaseStorage.instance
-          .ref(destination)
-          .child('file/');
-      await ref.putFile(_photo!);
+      print(FirebaseStorage.instance.ref());
+      await FirebaseStorage.instance.ref().putFile(_photo!);
+      // await ref.putFile(_photo!);
     } catch (e) {
       print('error occured');
+      print(e);
     }
   }
 
@@ -80,7 +81,20 @@ class _PostsPageState extends State<PostsPage> {
         body: Column(
       // mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(height: 40),
+        const SizedBox(height: 30),
+        Container(
+            margin: const EdgeInsets.only(top: 15.0, left: 15.0),
+            child: Align(
+                alignment: Alignment.topLeft,
+                child: ElevatedButton(
+                    child: Icon(CupertinoIcons.back, color: Colors.white),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            teal.withOpacity(1))),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }))),
+        SizedBox(height: 30),
         TextField(
             decoration: InputDecoration(
               label: Text("Post - Title"),
@@ -95,27 +109,6 @@ class _PostsPageState extends State<PostsPage> {
         SizedBox(
           height: 20.0,
         ),
-
-        Align(
-            alignment: Alignment.center,
-            child: ElevatedButton.icon(
-                icon: Icon(Icons.save),
-                onPressed: () {
-                  FirebaseFirestore.instance.collection("Posts").doc().set({
-                    "title": Title.text,
-                    "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
-                    "caption": Caption.text,
-                    "photoURL": _photo.toString(),
-                  });
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => NavBar(
-                          // user: user,
-                          ),
-                    ),
-                  );
-                },
-                label: Text("post"))),
         Center(
           child: GestureDetector(
             onTap: () {
@@ -147,7 +140,41 @@ class _PostsPageState extends State<PostsPage> {
                     ),
             ),
           ),
-        )
+        ),
+        const SizedBox(height: 30),
+        Align(
+            alignment: Alignment.center,
+            child: ElevatedButton.icon(
+                icon: Icon(Icons.save),
+                onPressed: () {
+                  void getnum() async {
+                    print("getting num");
+
+                    int f = await FirebaseFirestore.instance
+                        .collection('Posts')
+                        .snapshots()
+                        .length;
+
+                    print("getting f");
+
+                    FirebaseFirestore.instance.collection("Posts").doc().set({
+                      "title": Title.text,
+                      "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
+                      "caption": Caption.text,
+                      "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
+                      "postPhotoURL": _photo.toString(),
+                      "number": f.toString(),
+                    });
+                  }
+
+                  MaterialPageRoute(
+                    builder: (context) => NavBar(
+                        // user: user,
+                        ),
+                  );
+                  getnum();
+                },
+                label: Text("post"))),
       ],
     ));
   }

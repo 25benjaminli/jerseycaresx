@@ -24,6 +24,7 @@ class GetInvolvedPage extends StatelessWidget {
             child: Column(children: <Widget>[
               Container(
                 width: 300,
+                height: 145,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: blueC,
@@ -51,7 +52,7 @@ class GetInvolvedPage extends StatelessWidget {
                   ),
                 ]),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               const Text(
                 "FELLOWSHIP",
                 style: TextStyle(

@@ -78,7 +78,7 @@ class AnnualEventsPage extends StatelessWidget {
                         height: 1.4),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 30),
                   ElevatedButton(
                       child: Text(
                         'More Info',

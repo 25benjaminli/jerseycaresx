@@ -12,7 +12,8 @@ class AboutUsPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(children: <Widget>[
               Container(
-                width: 200,
+                width: 250,
+                height: 75,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: blueC,

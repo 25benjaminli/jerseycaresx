@@ -6,15 +6,8 @@ class MessagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        // alignment: Alignment.center,
-        child: Column(
-          children: <Widget>[
-            Text("MESSAGES")
-          ]
-        )
-        
-      )
-    );
+        body: Container(
+            // alignment: Alignment.center,
+            child: Column(children: <Widget>[Text("no bitches?")])));
   }
 }

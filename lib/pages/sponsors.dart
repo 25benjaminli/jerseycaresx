@@ -13,23 +13,37 @@ class SponsorsPage extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    "CORPORATE SPONSORS",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 25,
-                      color: blueC,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    width: 250,
+                    height: 75,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: blueC,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
+                    child: Column(children: [
+                      Text(
+                        "Our Sponsors",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.quicksand(
+                            fontSize: 25,
+                            color: blueC,
+                            fontWeight: FontWeight.bold,
+                            height: 1.5),
+                      ),
+                      Text(
+                        "2021-2022",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.quicksand(
+                            fontSize: 20,
+                            color: tealC,
+                            fontWeight: FontWeight.bold,
+                            height: 1.5),
+                      ),
+                    ]),
                   ),
-                  Text(
-                    "2021-2022",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 20,
-                      color: tealC,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 30),
                   Text(
                     "LEADERSHIP - \$125,000 - \$249,999",
                     style: GoogleFonts.quicksand(
@@ -72,7 +86,10 @@ class SponsorsPage extends StatelessWidget {
                   const SizedBox(height: 50),
                   Text(
                     "PREMIER - \$100,000 - \$124,999",
-                    style: GoogleFonts.quicksand(fontSize: 20, color: orangeC),
+                    style: GoogleFonts.quicksand(
+                        fontSize: 20,
+                        color: orangeC,
+                        fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
@@ -97,6 +114,7 @@ class SponsorsPage extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 20,
                       color: orangeC,
+                      fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -142,6 +160,7 @@ class SponsorsPage extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 20,
                       color: orangeC,
+                      fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),

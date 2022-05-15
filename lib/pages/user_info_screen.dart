@@ -48,37 +48,46 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   void initState() {
     _user = FirebaseAuth.instance.currentUser!;
-    
 
     super.initState();
   }
 
   Future<DocumentSnapshot> getAboutMe() async {
-    DocumentSnapshot user = await FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid.toString()).get();
+    DocumentSnapshot user = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(FirebaseAuth.instance.currentUser!.uid.toString())
+        .get();
 
     return user;
-    
   }
-
-  
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
-            right: 16.0,
-            bottom: 20.0,
-            top: 10.0,
-          ),
+        backgroundColor: Colors.white,
+        body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
+              Container(
+                  margin: const EdgeInsets.only(top: 15.0, right: 15.0),
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: ElevatedButton(
+                          child:
+                              Icon(CupertinoIcons.pencil, color: Colors.white),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  teal.withOpacity(1))),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => EditSettingsPage(
+                                    // user: user,
+                                    ),
+                              ),
+                            );
+                          }))),
               Row(),
               _user.photoURL != null
                   ? ClipOval(
@@ -117,26 +126,27 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               ),
               const SizedBox(height: 16.0),
               // future builder for displaying the "about" information
-              
+
               StreamBuilder(
-                stream: FirebaseFirestore.instance.collection('Users').where(
-                  "uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString()
-                  ).snapshots(),
-                builder: (
-                  BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot
-                ) { 
-                  if (!snapshot.hasData) return const SizedBox.shrink(); 
-                      
-                      final docDataA = (snapshot.data!.docs[0].data());
-                      print("docdata: " + docDataA.toString());
-                      final docData = docDataA! as Map<String, dynamic>;
-                      print("docdata2: " + docData['about'].toString());
-                      final about = (docData['about']).toString(); 
-                      
-                      return Text('${about}', style: TextStyle(color: Colors.black));
-                  }
-              ),
+                  stream: FirebaseFirestore.instance
+                      .collection('Users')
+                      .where("uid",
+                          isEqualTo:
+                              FirebaseAuth.instance.currentUser!.uid.toString())
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) return const SizedBox.shrink();
+
+                    final docDataA = (snapshot.data!.docs[0].data());
+                    print("docdata: " + docDataA.toString());
+                    final docData = docDataA! as Map<String, dynamic>;
+                    print("docdata2: " + docData['about'].toString());
+                    final about = (docData['about']).toString();
+
+                    return Text('${about}',
+                        style: const TextStyle(color: Colors.black));
+                  }),
               const Spacer(),
               _isSigningOut
                   ? const CircularProgressIndicator(
@@ -169,19 +179,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       label: Text("sign out",
                           style: TextStyle(color: Colors.black)),
                     ),
-                    ElevatedButton.icon(onPressed: () => {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => EditSettingsPage(
-                            // user: user,
-                          ),
-                        ),
-                      )
-                    }, icon: Icon(Icons.create_sharp), label: Text("edit account settings"))
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
