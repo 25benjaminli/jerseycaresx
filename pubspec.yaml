@@ -44,6 +44,7 @@ dependencies:
   firebase_storage: ^10.2.15
   firebase_storage_web: ^3.2.14
   permission_handler: ^9.2.0
+  path_provider: ^2.0.10
   
 
 dev_dependencies:

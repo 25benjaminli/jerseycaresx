@@ -17,7 +17,7 @@ class ActualHomepage extends StatelessWidget {
       // alignment: Alignment.center,
       child: Column(children: <Widget>[
         Container(
-            margin: const EdgeInsets.only(top: 15.0, right: 15.0),
+            margin: const EdgeInsets.only(top: 1.0, right: 15.0),
             child: Align(
                 alignment: Alignment.topRight,
                 child: ElevatedButton(
@@ -34,11 +34,35 @@ class ActualHomepage extends StatelessWidget {
                         ),
                       );
                     }))),
+        ElevatedButton(
+            child: Icon(Icons.delete),
+            onPressed: () {
+              FirebaseFirestore.instance
+                  .collection("PostTest")
+                  .get()
+                  .then((snapshot) async {
+                for (DocumentSnapshot ds in snapshot.docs) {
+                  await ds.reference.delete();
+                }
+              });
+              FirebaseFirestore.instance.collection("PostTest").doc().set({
+                "title": "Bruh",
+                "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
+                "caption": "Bruh Caption",
+                "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
+                "postPhotoURL": "null",
+                // "number": f.toString(),
+              });
+
+              // Fire
+              // delete all posts but leave one
+              // FirebaseFirestore.instance.collection
+            }),
         Expanded(
           flex: 20,
           child: StreamBuilder(
               stream:
-                  FirebaseFirestore.instance.collection('Posts').snapshots(),
+                  FirebaseFirestore.instance.collection('PostTest').snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) return const SizedBox.shrink();
@@ -49,10 +73,11 @@ class ActualHomepage extends StatelessWidget {
                     final docData = docDataA! as Map<String, dynamic>;
                     print("docdata " + index.toString());
                     print(docData);
-                    final title = (docData['title']);
-                    final caption = (docData['caption']);
-                    final profileURL = (docData['profileURL']);
-                    final postPicURL = (docData['postPhotoURL']);
+                    final title = (docData['title']); // required
+                    final caption = (docData['caption']); // required
+                    final profileURL = (docData['profileURL']); // required
+                    final postPicURL =
+                        (docData['postPhotoURL']); // not required
 
                     // var username;
                     print("lol");
@@ -68,13 +93,15 @@ class ActualHomepage extends StatelessWidget {
                         children: [
                           ListTile(title: Text(title), subtitle: Text(caption)),
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image(
-                              image: NetworkImage(profileURL),
-                              width: 35,
-                              height: 35,
-                            ),
-                          ),
+                            child: Row(children: [
+                              //borderRadius: BorderRadius.circular(50),
+                              Image(
+                                image: NetworkImage(profileURL),
+                                width: 35,
+                                height: 35,
+                              ),
+                            ]),
+                          )
                         ]
 
                         // trailing: FirebaseAuth.instance.currentUser != null ? Image.network(FirebaseAuth.instance.currentUser!.profileURL) : ,

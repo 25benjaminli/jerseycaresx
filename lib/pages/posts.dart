@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:path_provider/path_provider.dart';
 
 // FirebaseFirestore.instance.collection("Posts").doc().set({
 //                 "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
@@ -60,14 +61,16 @@ class _PostsPageState extends State<PostsPage> {
   }
 
   Future uploadFile() async {
-    if (_photo == null) return;
-    final fileName = basename(_photo!.path);
-    final destination = 'file/';
-    print("dest: " + destination);
-
+    // if (_photo == null) return;
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String filePath = '${appDocDir.absolute}/assets/files/family.png';
+    File file = File(filePath);
+    // final filepath = 'assets/files/family.png';
+    // final destination = 'file/';
+    // print("dest: " + destination);
+    // File f = File(filePath);
     try {
-      print(FirebaseStorage.instance.ref());
-      await FirebaseStorage.instance.ref().putFile(_photo!);
+      await FirebaseStorage.instance.ref().putFile(file);
       // await ref.putFile(_photo!);
     } catch (e) {
       print('error occured');
@@ -147,32 +150,20 @@ class _PostsPageState extends State<PostsPage> {
             child: ElevatedButton.icon(
                 icon: Icon(Icons.save),
                 onPressed: () {
-                  void getnum() async {
-                    print("getting num");
-
-                    int f = await FirebaseFirestore.instance
-                        .collection('Posts')
-                        .snapshots()
-                        .length;
-
-                    print("getting f");
-
-                    FirebaseFirestore.instance.collection("Posts").doc().set({
-                      "title": Title.text,
-                      "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
-                      "caption": Caption.text,
-                      "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
-                      "postPhotoURL": _photo.toString(),
-                      "number": f.toString(),
-                    });
-                  }
-
-                  MaterialPageRoute(
+                  FirebaseFirestore.instance.collection("PostTest").doc().set({
+                    "title": Title.text,
+                    "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
+                    "caption": Caption.text,
+                    "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
+                    "postPhotoURL": _photo.toString(),
+                    // "number": f.toString(),
+                  });
+                  uploadFile();
+                  Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => NavBar(
                         // user: user,
                         ),
-                  );
-                  getnum();
+                  ));
                 },
                 label: Text("post"))),
       ],
