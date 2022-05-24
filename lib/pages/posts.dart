@@ -13,6 +13,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // FirebaseFirestore.instance.collection("Posts").doc().set({
 //                 "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
 //                 "caption": FirebaseAuth.instance.currentUser!.displayName.toString(),
@@ -30,54 +32,21 @@ class _PostsPageState extends State<PostsPage> {
   final Caption = TextEditingController();
   final Title = TextEditingController();
   // final  = TextEditingController();
-  FirebaseStorage storage = FirebaseStorage.instance;
-
-  File? _photo;
-  final ImagePicker _picker = ImagePicker();
-
-  Future imgFromGallery() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        _photo = File(pickedFile.path);
-        uploadFile();
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
-
-  Future imgFromCamera() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
-    setState(() {
-      if (pickedFile != null) {
-        _photo = File(pickedFile.path);
-        uploadFile();
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
-
-  Future uploadFile() async {
-    // if (_photo == null) return;
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String filePath = '${appDocDir.absolute}/assets/files/family.png';
-    File file = File(filePath);
-    // final filepath = 'assets/files/family.png';
-    // final destination = 'file/';
-    // print("dest: " + destination);
-    // File f = File(filePath);
+  Future<void> uploadFile(
+    String? filepath,
+    String filename,
+  ) async {
+    File f = File(filepath!);
     try {
-      await FirebaseStorage.instance.ref().putFile(file);
-      // await ref.putFile(_photo!);
-    } catch (e) {
-      print('error occured');
+      await FirebaseStorage.instance.ref('file/$filename').putFile(f);
+    } catch(e) {
+      print("errorrr");
       print(e);
     }
   }
 
+  String? path;
+  String fileName = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,91 +81,90 @@ class _PostsPageState extends State<PostsPage> {
         SizedBox(
           height: 20.0,
         ),
-        Center(
-          child: GestureDetector(
-            onTap: () {
-              _showPicker(context);
-            },
-            child: CircleAvatar(
-              radius: 55,
-              backgroundColor: Color(0xffFDCF09),
-              child: _photo != null
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.file(
-                        _photo!,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    )
-                  : Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(50)),
-                      width: 100,
-                      height: 100,
-                      child: Icon(
-                        Icons.camera_alt,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-            ),
-          ),
+
+        ElevatedButton(
+                child: Text("upload file"),
+                onPressed: () async {
+                  final res = await FilePicker.platform.pickFiles(
+                    allowMultiple: false,
+                    type: FileType.custom,
+                    allowedExtensions: ['png', 'jpg']
+                  );
+                  if (res == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("No File Selected"))
+                    );
+                  }
+                  String s = FirebaseAuth.instance.currentUser!.uid;
+                  path = (res!.files.single.path)!;
+                  String orig = res.files.single.name;
+                  fileName = orig.substring(0, orig.indexOf('.')) + s + orig.substring(orig.indexOf('.'), orig.length);
+
+                  // PlatformFile p = res!.files.single;
+                  print(path);
+                  print("FILENAME: " + fileName);
+                }
         ),
-        const SizedBox(height: 30),
+
         Align(
             alignment: Alignment.center,
             child: ElevatedButton.icon(
                 icon: Icon(Icons.save),
-                onPressed: () {
-                  FirebaseFirestore.instance.collection("PostTest").doc().set({
-                    "title": Title.text,
-                    "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
-                    "caption": Caption.text,
-                    "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
-                    "postPhotoURL": _photo.toString(),
-                    // "number": f.toString(),
-                  });
-                  uploadFile();
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => NavBar(
-                        // user: user,
-                        ),
-                  ));
+                onPressed: () async {
+                  await uploadFile(path, fileName);
+                   
+                   FirebaseFirestore.instance.collection("PostTest").doc().set({
+                      "title": Title.text,
+                      "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
+                      "caption": Caption.text,
+                      "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
+                      "postPhotoURL": path!,
+                      // "number": f.toString(),
+                    });
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => NavBar(
+                          // user: user,
+                          ),
+                    ),
+                  );
                 },
                 label: Text("post"))),
+        // Center(
+        //   child: GestureDetector(
+        //     onTap: () {
+        //       _showPicker(context);
+        //     },
+        //     child: CircleAvatar(
+        //       radius: 55,
+        //       backgroundColor: Color(0xffFDCF09),
+        //       child: _photo != null
+        //           ? ClipRRect(
+        //               borderRadius: BorderRadius.circular(50),
+        //               child: Image.file(
+        //                 _photo!,
+        //                 width: 100,
+        //                 height: 100,
+        //                 fit: BoxFit.fitHeight,
+        //               ),
+        //             )
+        //           : Container(
+        //               decoration: BoxDecoration(
+        //                   color: Colors.grey[200],
+        //                   borderRadius: BorderRadius.circular(50)),
+        //               width: 100,
+        //               height: 100,
+        //               child: Icon(
+        //                 Icons.camera_alt,
+        //                 color: Colors.grey[800],
+        //               ),
+        //             ),
+        //     ),
+        //   ),
+        // )
       ],
     ));
   }
 
-  void _showPicker(context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return SafeArea(
-            child: Container(
-              child: new Wrap(
-                children: <Widget>[
-                  new ListTile(
-                      leading: new Icon(Icons.photo_library),
-                      title: new Text('Gallery'),
-                      onTap: () {
-                        imgFromGallery();
-                        Navigator.of(context).pop();
-                      }),
-                  new ListTile(
-                    leading: new Icon(Icons.photo_camera),
-                    title: new Text('Camera'),
-                    onTap: () {
-                      imgFromCamera();
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
+
   }
-}

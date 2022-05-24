@@ -45,6 +45,7 @@ dependencies:
   firebase_storage_web: ^3.2.14
   permission_handler: ^9.2.0
   path_provider: ^2.0.10
+  file_picker: ^4.5.1
   
 
 dev_dependencies:

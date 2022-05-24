@@ -87,13 +87,6 @@ class _NavBar extends State<NavBar> {
     ),
   ];
 
-  static List<Widget> optionsHidden = <Widget>[
-    September11(),
-    MartinLutherPage(),
-  ];
-
-  
-
   void _onItemTappedHamburger(int index) {
     // print(index);
     selectedBottom = false;
