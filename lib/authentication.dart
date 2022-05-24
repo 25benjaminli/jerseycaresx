@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'pages/nav.dart';
+import 'pages/signup.dart';
+
 class Authentication {
   static var googleAccount = Rx<GoogleSignInAccount?>(null);
 
@@ -41,11 +43,13 @@ class Authentication {
     return firebaseApp;
   }
 
-  static Future<User?> signInWithGoogle({required BuildContext context}) async {
+  static Future<bool> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore f = FirebaseFirestore.instance;
     User? user;
     print("a");
+
+    bool renderHomeScreen = true;
     if (kIsWeb) {
       GoogleAuthProvider authProvider = GoogleAuthProvider();
 
@@ -91,20 +95,28 @@ class Authentication {
           CollectionReference users = f.collection("Users"); 
           var docref = f.collection("Users").doc(auth.currentUser!.uid.toString());
           var doc = await docref.get();
-          
-          if (!doc.exists){
+          // SWAPPED FOR DEVELOPMENT PURPOSES
+          if (doc.exists){ // !doc.exists
+          // render sign up features
+             Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => SignUpPage(
+                  // user: user,
+                ),
+              ),
+            );
+
+            renderHomeScreen = false;
+
+            
+          }
+          else {
             f.collection("Users").doc(auth.currentUser!.uid.toString()).set({
             "displayName": auth.currentUser!.displayName,
             "email": auth.currentUser!.email,
             "photoURL": auth.currentUser!.photoURL,
             "uid": auth.currentUser!.uid.toString(),
             });
-
-            // render sign up features
-
-            
-
-
           }
 
         } on FirebaseAuthException catch (e) {
@@ -133,7 +145,7 @@ class Authentication {
       }
     }
 
-    return user;
+    return renderHomeScreen;
   }
 
   static Future<void> signOut({required BuildContext context}) async {

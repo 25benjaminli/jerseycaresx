@@ -67,11 +67,7 @@ class _PostsPageState extends State<PostsPage> {
                       Navigator.pop(context);
                     }))),
         SizedBox(height: 30),
-        TextField(
-            decoration: InputDecoration(
-              label: Text("Post - Title"),
-            ),
-            controller: Title),
+        
         TextField(
             decoration: InputDecoration(
               label: Text("Post - Caption"),
@@ -112,15 +108,28 @@ class _PostsPageState extends State<PostsPage> {
                 icon: Icon(Icons.save),
                 onPressed: () async {
                   await uploadFile(path, fileName);
-                   
-                   FirebaseFirestore.instance.collection("PostTest").doc().set({
-                      "title": Title.text,
+                  
+                  // GET NUMBER
+                  final fileStorage = FirebaseStorage.instance;
+                  final storage = FirebaseFirestore.instance;
+                  // var num;
+                  // try {
+                  //   num = await storage.collection("PostTest").snapshots();
+                  // } catch(e) {
+                  //   print("errorrlol");
+                  //   print(e);
+                  // }
+                  // print("num: " + num.toString());
+                  FirebaseFirestore.instance.collection("PostTest").doc().set({
+                      // "title": Title.text,
                       "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
                       "caption": Caption.text,
                       "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
                       "postPhotoURL": path!,
-                      // "number": f.toString(),
+                      // "number": num.toString(),
                     });
+
+                  
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => NavBar(

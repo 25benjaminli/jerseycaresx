@@ -31,7 +31,6 @@ class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
   
   
-  
 
   @override
   State<StatefulWidget> createState() {

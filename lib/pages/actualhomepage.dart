@@ -8,7 +8,7 @@ import 'posts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 class ActualHomepage extends StatelessWidget {
   const ActualHomepage({Key? key}) : super(key: key);
 
@@ -50,7 +50,7 @@ class ActualHomepage extends StatelessWidget {
                 }
               });
               FirebaseFirestore.instance.collection("PostTest").doc().set({
-                "title": "Bruh",
+                // "title": "Bruh",
                 "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
                 "caption": "Bruh Caption",
                 "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
@@ -78,7 +78,7 @@ class ActualHomepage extends StatelessWidget {
                         final docData = docDataA! as Map<String, dynamic>;
                         print("docdata " + index.toString());
                         print(docData);
-                        final title = (docData['title']); 
+                        // final title = (docData['title']); 
                         final caption = (docData['caption']);
                         final photoURL = (docData['profileURL']); 
                         final postURL = (docData['postPhotoURL']);
@@ -92,24 +92,57 @@ class ActualHomepage extends StatelessWidget {
                         // String s = FirebaseAuth.instance.currentUser.photoURL;
                         // print(username);
                         return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [ ListTile(
-                          title: Text(title),
-                          subtitle: Text(caption)),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image(
-                              image: NetworkImage(
-                               photoURL),
-                               width: 35,
-                               height: 35,
+                          children: [
+                              Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // need to align the text & image properly
+                                Image(
+                                  image: NetworkImage(photoURL),
+                                  width: 35, 
+                                  height: 35,
+                                ),
+                                Text("            " + FirebaseAuth.instance.currentUser!.displayName!)
+                              ]
                             ),
-                          ), 
-                          Image.file(
-                            File(postURL),
-                            width: 300,
-                            height: 300
-                          )
+                            Image.file(
+                              File(postURL),
+                              width: 300,
+                              height: 300,
+                              alignment: Alignment.center,
+                            ),
+
+                            Text(caption),
+                            const SizedBox(height: 30),
+
+
+
+
+
+
+                            
+                            // Align(
+                            //   child: 
+                            //     ClipRRect(
+                            //     borderRadius: BorderRadius.circular(50),
+                            //     child: Row(
+                            //       children: [ 
+                            //         Image(
+                            //       image: NetworkImage(
+                            //       photoURL),
+                            //       width: 35,
+                            //       height: 35,
+                            //     ),
+                            //     ListTile(
+                            //       title: Text(title),
+                            //       subtitle: Text(caption)
+                            //     ),
+                                
+                            //     ]
+                            //       ),
+                            //     ), 
+                              
+                            // )
                           ]                        
 
                         // trailing: FirebaseAuth.instance.currentUser != null ? Image.network(FirebaseAuth.instance.currentUser!.profileURL) : ,

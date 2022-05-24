@@ -33,18 +33,20 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 setState(() {
                   _isSigningIn = true;
                 });
-                User? user =
+                bool b = 
                     await Authentication.signInWithGoogle(context: context);
 
                 setState(() {
                   _isSigningIn = false;
                 });
 
-                if (user != null) {
+                if (b) {
+                  // push vs push replacement - go back for testing but later push rep
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 }
+                
               },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
