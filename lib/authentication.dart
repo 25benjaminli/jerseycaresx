@@ -96,8 +96,15 @@ class Authentication {
           var docref = f.collection("Users").doc(auth.currentUser!.uid.toString());
           var doc = await docref.get();
           // SWAPPED FOR DEVELOPMENT PURPOSES
-          if (doc.exists){ // !doc.exists
+          if (!doc.exists){ // !doc.exists
           // render sign up features
+
+            // f.collection("Users").doc(auth.currentUser!.uid.toString()).set({
+            // "displayName": auth.currentUser!.displayName,
+            // "email": auth.currentUser!.email,
+            // "photoURL": auth.currentUser!.photoURL,
+            // "uid": auth.currentUser!.uid.toString(),
+            // });
              Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => SignUpPage(
@@ -110,14 +117,7 @@ class Authentication {
 
             
           }
-          else {
-            f.collection("Users").doc(auth.currentUser!.uid.toString()).set({
-            "displayName": auth.currentUser!.displayName,
-            "email": auth.currentUser!.email,
-            "photoURL": auth.currentUser!.photoURL,
-            "uid": auth.currentUser!.uid.toString(),
-            });
-          }
+          
 
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {

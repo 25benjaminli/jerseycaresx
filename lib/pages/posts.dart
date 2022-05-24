@@ -31,14 +31,20 @@ class PostsPage extends StatefulWidget {
 class _PostsPageState extends State<PostsPage> {
   final Caption = TextEditingController();
   final Title = TextEditingController();
+  int? msgNum;
+  
+
+  
   // final  = TextEditingController();
   Future<void> uploadFile(
     String? filepath,
     String filename,
   ) async {
+    String folderName = FirebaseAuth.instance.currentUser!.uid;
+
     File f = File(filepath!);
     try {
-      await FirebaseStorage.instance.ref('file/$filename').putFile(f);
+      await FirebaseStorage.instance.ref('/$filename').putFile(f);
     } catch(e) {
       print("errorrr");
       print(e);
@@ -49,6 +55,11 @@ class _PostsPageState extends State<PostsPage> {
   String fileName = "";
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore.instance.collection('PostTest').snapshots().listen((event) {
+      print("b:" + event.docs.length.toString());
+      msgNum = event.docs.length;
+
+    });
     return Scaffold(
         body: Column(
       // mainAxisAlignment: MainAxisAlignment.center,
@@ -81,6 +92,8 @@ class _PostsPageState extends State<PostsPage> {
         ElevatedButton(
                 child: Text("upload file"),
                 onPressed: () async {
+                  print("message num: " + msgNum.toString());
+
                   final res = await FilePicker.platform.pickFiles(
                     allowMultiple: false,
                     type: FileType.custom,
@@ -91,12 +104,12 @@ class _PostsPageState extends State<PostsPage> {
                       const SnackBar(content: Text("No File Selected"))
                     );
                   }
-                  String s = FirebaseAuth.instance.currentUser!.uid;
+                  // make a folder per user
+                  String uid = FirebaseAuth.instance.currentUser!.uid;
                   path = (res!.files.single.path)!;
                   String orig = res.files.single.name;
-                  fileName = orig.substring(0, orig.indexOf('.')) + s + orig.substring(orig.indexOf('.'), orig.length);
+                  fileName = msgNum.toString() + "-" + uid; // message id, user id.
 
-                  // PlatformFile p = res!.files.single;
                   print(path);
                   print("FILENAME: " + fileName);
                 }
@@ -120,14 +133,16 @@ class _PostsPageState extends State<PostsPage> {
                   //   print(e);
                   // }
                   // print("num: " + num.toString());
+                  String url = await fileStorage.ref().child(msgNum.toString() + "-" + FirebaseAuth.instance.currentUser!.uid.toString()).getDownloadURL();
+                  
                   FirebaseFirestore.instance.collection("PostTest").doc().set({
                       // "title": Title.text,
                       "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
                       "caption": Caption.text,
                       "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
-                      "postPhotoURL": path!,
+                      "postPhotoURL": url,
                       // "number": num.toString(),
-                    });
+                  });
 
                   
                   Navigator.of(context).pushReplacement(

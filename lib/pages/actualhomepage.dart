@@ -11,7 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 class ActualHomepage extends StatelessWidget {
   const ActualHomepage({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,14 +49,14 @@ class ActualHomepage extends StatelessWidget {
                   await ds.reference.delete();
                 }
               });
-              FirebaseFirestore.instance.collection("PostTest").doc().set({
-                // "title": "Bruh",
-                "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
-                "caption": "Bruh Caption",
-                "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
-                "postPhotoURL": "null",
-                // "number": f.toString(),
-              });
+              // FirebaseFirestore.instance.collection("PostTest").doc().set({
+              //   // "title": "Bruh",
+              //   "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
+              //   "caption": "Bruh Caption",
+              //   "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
+              //   "postPhotoURL": "null",
+              //   // "number": f.toString(),
+              // });
 
               // Fire
               // delete all posts but leave one
@@ -74,6 +74,7 @@ class ActualHomepage extends StatelessWidget {
                       return ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (BuildContext context, int index) {
+                        print(snapshot.data!.docs.length);
                         final docDataA = (snapshot.data!.docs[index].data());
                         final docData = docDataA! as Map<String, dynamic>;
                         print("docdata " + index.toString());
@@ -105,8 +106,8 @@ class ActualHomepage extends StatelessWidget {
                                 Text("            " + FirebaseAuth.instance.currentUser!.displayName!)
                               ]
                             ),
-                            Image.file(
-                              File(postURL),
+                            Image.network(
+                              postURL,
                               width: 300,
                               height: 300,
                               alignment: Alignment.center,
