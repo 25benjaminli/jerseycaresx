@@ -99,12 +99,12 @@ class Authentication {
           if (!doc.exists){ // !doc.exists
           // render sign up features
 
-            // f.collection("Users").doc(auth.currentUser!.uid.toString()).set({
-            // "displayName": auth.currentUser!.displayName,
-            // "email": auth.currentUser!.email,
-            // "photoURL": auth.currentUser!.photoURL,
-            // "uid": auth.currentUser!.uid.toString(),
-            // });
+            f.collection("Users").doc(auth.currentUser!.uid.toString()).set({
+            "displayName": auth.currentUser!.displayName,
+            "email": auth.currentUser!.email,
+            "photoURL": auth.currentUser!.photoURL,
+            "uid": auth.currentUser!.uid.toString(),
+            });
              Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => SignUpPage(

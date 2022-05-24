@@ -83,6 +83,8 @@ class ActualHomepage extends StatelessWidget {
                         final caption = (docData['caption']);
                         final photoURL = (docData['profileURL']); 
                         final postURL = (docData['postPhotoURL']);
+                        final displayName = (docData['displayName']);
+
                         var username;
                         print("lol");
                         // grab username from firestore
@@ -103,7 +105,7 @@ class ActualHomepage extends StatelessWidget {
                                   width: 35, 
                                   height: 35,
                                 ),
-                                Text("            " + FirebaseAuth.instance.currentUser!.displayName!)
+                                Text("            " + displayName)
                               ]
                             ),
                             Image.network(

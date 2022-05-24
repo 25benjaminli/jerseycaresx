@@ -141,7 +141,8 @@ class _PostsPageState extends State<PostsPage> {
                       "caption": Caption.text,
                       "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
                       "postPhotoURL": url,
-                      // "number": num.toString(),
+                      "displayName": FirebaseAuth.instance.currentUser!.displayName.toString(),
+                      "msgid": msgNum.toString(),
                   });
 
                   
