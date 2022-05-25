@@ -6,6 +6,6 @@ class UpcomingEventsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Text("there are no upcoming events- Jersey Midcares"));
+        body: Text("there are no upcoming events"));
   }
 }

@@ -8,6 +8,6 @@ class MessagesPage extends StatelessWidget {
     return Scaffold(
         body: Container(
             // alignment: Alignment.center,
-            child: Column(children: <Widget>[Text("no bitches?")])));
+            child: Column(children: <Widget>[Text("no messages :(")])));
   }
 }

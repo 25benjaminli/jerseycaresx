@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:flutter/http.dart';
 import '../main.dart';
 import 'aboutus.dart';
+import 'donate.dart';
 import 'help.dart';
 import 'martinluther.dart';
 import 'sponsors.dart';
@@ -40,6 +41,7 @@ class NavBar extends StatefulWidget {
 
 bool pressedInvolved = false;
 bool pressedTrackHours = false;
+bool pressedDonate = false;
 bool pressedAnnualEvents = false;
 bool pressedAboutUs = false;
 bool pressedHelp = false;
@@ -68,7 +70,7 @@ class _NavBar extends State<NavBar> {
 
   static const List<Widget> optionsHamburger = <Widget>[
     GetInvolvedPage(),
-    // donate
+    DonatePage(),
     TrackHoursPage(),
     AnnualEventsPage(),
     AboutUsPage(),
@@ -101,6 +103,7 @@ class _NavBar extends State<NavBar> {
     displayBottom = true;
     pressedInvolved = false;
     pressedTrackHours = false;
+    pressedDonate = false;
     pressedAnnualEvents = false;
     pressedAboutUs = false;
     pressedHelp = false;
@@ -133,12 +136,12 @@ class _NavBar extends State<NavBar> {
               child: Image.asset('assets/images/logo.png'),
             ),
             ListTile(
-              leading:
-                  const Icon(CupertinoIcons.heart_circle_fill, color: orangeC),
+              leading: const Icon(CupertinoIcons.heart_circle_fill, color: orangeC),
               title: const Text('Get Involved'),
               tileColor: pressedInvolved ? greyC : null,
               onTap: () {
                 pressedInvolved = true;
+                pressedDonate = false;
                 pressedAboutUs = false;
                 pressedAnnualEvents = false;
                 pressedTrackHours = false;
@@ -152,20 +155,13 @@ class _NavBar extends State<NavBar> {
             ListTile(
               leading: const Icon(FeatherIcons.creditCard, color: orangeC),
               title: const Text('Donate'),
-              onTap: () {
-                Navigator.pop(context);
-                _launchURL();
-              },
-            ),
-            ListTile(
-              leading: const Icon(CupertinoIcons.hourglass, color: orangeC),
-              title: const Text('Track Hours'),
-              tileColor: pressedTrackHours ? greyC : null,
+              tileColor: pressedInvolved ? greyC : null,
               onTap: () {
                 pressedInvolved = false;
+                pressedDonate = true;
                 pressedAboutUs = false;
                 pressedAnnualEvents = false;
-                pressedTrackHours = true;
+                pressedTrackHours = false;
                 pressedAboutUs = false;
                 pressedHelp = false;
                 pressedSponsor = false;
@@ -174,14 +170,15 @@ class _NavBar extends State<NavBar> {
               },
             ),
             ListTile(
-              title: const Text('Annual Events'),
-              leading: const Icon(FeatherIcons.checkSquare, color: orangeC),
-              tileColor: pressedAnnualEvents ? greyC : null,
+              leading: const Icon(CupertinoIcons.hourglass, color: orangeC),
+              title: const Text('Track Hours'),
+              tileColor: pressedTrackHours ? greyC : null,
               onTap: () {
                 pressedInvolved = false;
+                pressedDonate = false;
                 pressedAboutUs = false;
-                pressedAnnualEvents = true;
-                pressedTrackHours = false;
+                pressedAnnualEvents = false;
+                pressedTrackHours = true;
                 pressedAboutUs = false;
                 pressedHelp = false;
                 pressedSponsor = false;
@@ -190,11 +187,29 @@ class _NavBar extends State<NavBar> {
               },
             ),
             ListTile(
+              title: const Text('Annual Events'),
+              leading: const Icon(FeatherIcons.checkSquare, color: orangeC),
+              tileColor: pressedAnnualEvents ? greyC : null,
+              onTap: () {
+                pressedInvolved = false;
+                pressedDonate = false;
+                pressedAboutUs = false;
+                pressedAnnualEvents = true;
+                pressedTrackHours = false;
+                pressedAboutUs = false;
+                pressedHelp = false;
+                pressedSponsor = false;
+                Navigator.pop(context);
+                _onItemTappedHamburger(3);
+              },
+            ),
+            ListTile(
               leading: const Icon(FeatherIcons.info, color: orangeC),
               title: const Text('About Us'),
               tileColor: pressedAboutUs ? greyC : null,
               onTap: () {
                 pressedInvolved = false;
+                pressedDonate = false;
                 pressedAboutUs = true;
                 pressedAnnualEvents = false;
                 pressedTrackHours = false;
@@ -202,7 +217,7 @@ class _NavBar extends State<NavBar> {
                 pressedHelp = false;
                 pressedSponsor = false;
                 Navigator.pop(context);
-                _onItemTappedHamburger(3);
+                _onItemTappedHamburger(4);
               },
             ),
             ListTile(
@@ -212,6 +227,7 @@ class _NavBar extends State<NavBar> {
               title: const Text('Help'),
               onTap: () {
                 pressedInvolved = false;
+                pressedDonate = false;
                 pressedAboutUs = false;
                 pressedAnnualEvents = false;
                 pressedTrackHours = false;
@@ -219,7 +235,7 @@ class _NavBar extends State<NavBar> {
                 pressedHelp = true;
                 pressedSponsor = false;
                 Navigator.pop(context);
-                _onItemTappedHamburger(4);
+                _onItemTappedHamburger(5);
               },
             ),
             ListTile(
@@ -229,13 +245,14 @@ class _NavBar extends State<NavBar> {
               onTap: () {
                 Navigator.pop(context);
                 pressedInvolved = false;
+                pressedDonate = false;
                 pressedAboutUs = false;
                 pressedAnnualEvents = false;
                 pressedTrackHours = false;
                 pressedAboutUs = false;
                 pressedHelp = false;
                 pressedSponsor = true;
-                _onItemTappedHamburger(5);
+                _onItemTappedHamburger(6);
               },
             ),
             const Divider(),

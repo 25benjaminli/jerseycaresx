@@ -31,12 +31,19 @@ class SignUpPage extends StatelessWidget {
         Text("I would Like to sign up as a..."),
 
         ElevatedButton(child: Text("Organization"), onPressed: () {
+          FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid.toString()).update({
+            "type": "organization"
+          });
 
         }),
 
         ElevatedButton(child: Text("Volunteer"), onPressed: () {
-
+          FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid.toString()).update({
+            "type": "volunteer"
+            });
         })
+
+        
 
 
         
