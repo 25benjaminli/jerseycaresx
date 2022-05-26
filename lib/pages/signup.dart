@@ -15,7 +15,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import '/authentication.dart';
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -25,6 +25,7 @@ class SignUpPage extends StatelessWidget {
       body: Column( children: [
         Text("Sign Up", style: TextStyle(fontSize: 30)),
         ElevatedButton(child: Text("Already signed up? Go back, sign in with a different account. "), onPressed: () {
+          Authentication.signOut(context: context);
           Navigator.pop(context);
         }),
 
