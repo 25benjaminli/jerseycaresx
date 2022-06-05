@@ -18,25 +18,28 @@ class MessagesPage extends StatelessWidget {
           } else {
             return ListView(
               children: snapshot.data!.docs.map((doc) {
-                return Row(children: [
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.white, elevation: 0),
-                    icon: ClipOval(
-                      child: Material(
-                        color: CustomColors.firebaseGrey.withOpacity(0.3),
-                        child: Image.network(
-                          (doc.data() as dynamic)['photoURL'],
-                          height: 50,
-                          width: 50,
+                return Column(children: [
+                  Row(children: [
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.white, elevation: 0),
+                      icon: ClipOval(
+                        child: Material(
+                          color: CustomColors.firebaseGrey.withOpacity(0.3),
+                          child: Image.network(
+                            (doc.data() as dynamic)['photoURL'],
+                            height: 50,
+                            width: 50,
+                          ),
                         ),
                       ),
-                    ),
-                    label: Text((doc.data() as dynamic)['displayName'],
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 15)),
-                  )
+                      label: Text((doc.data() as dynamic)['displayName'],
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 15)),
+                    )
+                  ]),
+                  Padding(padding: EdgeInsets.all(8))
                 ]);
               }).toList(),
             );

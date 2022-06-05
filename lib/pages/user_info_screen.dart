@@ -63,8 +63,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
-    
     return Scaffold(
         backgroundColor: Colors.white,
         body: Container(
@@ -117,6 +115,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   fontSize: 26,
                 ),
               ),
+              Text("Followers: ",
+                  style: const TextStyle(color: Colors.black, fontSize: 26)),
               const SizedBox(height: 8.0),
               Text(
                 _user.email!,
