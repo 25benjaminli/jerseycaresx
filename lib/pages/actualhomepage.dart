@@ -19,7 +19,6 @@ class ActualHomepage extends StatelessWidget {
         body: Container(
       // alignment: Alignment.center,
       child: Column(children: <Widget>[
-        Text("Welcome to the Homepage"),
         Container(
             margin: const EdgeInsets.only(top: 1.0, right: 15.0),
             child: Align(

@@ -98,14 +98,13 @@ class Authentication {
           // SWAPPED FOR DEVELOPMENT PURPOSES
           if (!doc.exists){ // !doc.exists
           // render sign up features
-            print("aint exist");
-            f.collection("Users").doc(auth.currentUser!.uid.toString()).set({
+
+            f.collection("Users").doc(auth.currentUser!.uid.toString()).update({
             "displayName": auth.currentUser!.displayName,
             "email": auth.currentUser!.email,
             "photoURL": auth.currentUser!.photoURL,
             "uid": auth.currentUser!.uid.toString(),
             });
-            print("added!");
              Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => SignUpPage(

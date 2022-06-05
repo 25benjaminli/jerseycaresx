@@ -30,8 +30,6 @@ import 'user_info_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
-  
-  
 
   @override
   State<StatefulWidget> createState() {
@@ -63,10 +61,8 @@ class _NavBar extends State<NavBar> {
   int _selectedIndexBottom = 0;
   bool displayBottom = true;
 
-
   _NavBar.hamburger(this._selectedIndexHamburger);
   _NavBar.bottom(this._selectedIndexBottom);
-
 
   static const List<Widget> optionsHamburger = <Widget>[
     GetInvolvedPage(),
@@ -118,9 +114,10 @@ class _NavBar extends State<NavBar> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: teal,
-        // title: Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        // ),
+        title: const Text(
+          "Jersey Cares",
+          textAlign: TextAlign.center,
+        ),
       ),
 
       body: Center(
@@ -136,7 +133,8 @@ class _NavBar extends State<NavBar> {
               child: Image.asset('assets/images/logo.png'),
             ),
             ListTile(
-              leading: const Icon(CupertinoIcons.heart_circle_fill, color: orangeC),
+              leading:
+                  const Icon(CupertinoIcons.heart_circle_fill, color: orangeC),
               title: const Text('Get Involved'),
               tileColor: pressedInvolved ? greyC : null,
               onTap: () {
