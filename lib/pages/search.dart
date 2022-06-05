@@ -9,36 +9,18 @@ import 'posts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../fbasefunctions.dart' as fb;
 
 List l = [];
+List names = [];
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
-  Future<List> getNames() async {
-    List<DocumentSnapshot> templist;
-    List<Map<String, dynamic>> list = [];
-    CollectionReference collectionRef =
-        FirebaseFirestore.instance.collection("Users");
-    QuerySnapshot collectionSnapshot =
-        await collectionRef.get(); // <--- This method is now get().
 
-    templist = collectionSnapshot.docs; // <--- ERROR
-
-    list = templist.map((DocumentSnapshot docSnapshot) {
-      return docSnapshot.data() as Map<String, dynamic>; // <--- Typecast this.
-    }).toList();
-
-    List b = [];
-    for (var x in list) {
-      b.add(x['email']);
-    }
-    l = b;
-    print("LIST: ");
-
-    print(list);
-
-    print("l after");
-    print(l);
+  Future<List> getData() async {
+    List asdf = await fb.getAll("Users");
+    l = asdf.map((e) => [e['displayName'], e['email'], e['uid']]).toList();
+    names = asdf.map((e) => (e['displayName'])).toList();
     return l;
   }
 
@@ -46,7 +28,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-      future: getNames(),
+      future: getData(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           // while data is loading:
@@ -67,18 +49,28 @@ class SearchPage extends StatelessWidget {
               searchList: l,
               overlaySearchListItemBuilder: (dynamic item) => Container(
                 padding: const EdgeInsets.all(8),
-                child: Text(
-                  item,
-                  style: const TextStyle(fontSize: 15, color: Colors.black),
-                ),
+                child: Row(children: [
+                  Text(
+                    "${item[0]}",
+                    style: const TextStyle(fontSize: 13, color: Colors.black),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        print(item[0] + " " + item[1] + " " + item[2]);
+                      },
+                      child: Text("Msg"))
+                ]),
               ),
               searchQueryBuilder: (query, l) => l.where((item) {
                 // print("hilo");
-
-                return item
+                item = item as List;
+                return (item[0]
                     .toString()
                     .toLowerCase()
-                    .contains(query.toLowerCase());
+                    .contains(query.toLowerCase()));
               }).toList(),
             )
           ]));

@@ -22,7 +22,7 @@ class MessagesPage extends StatelessWidget {
                   ElevatedButton.icon(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                        onSurface: Colors.white.withOpacity(1), elevation: 0),
+                        primary: Colors.white, elevation: 0),
                     icon: ClipOval(
                       child: Material(
                         color: CustomColors.firebaseGrey.withOpacity(0.3),
