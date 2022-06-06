@@ -10,20 +10,31 @@ import 'editsettings.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:class_to_map/class_to_map.dart';
+import '../fbasefunctions.dart' as fb;
 
-class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({Key? key, required User? user})
-      : _user = user,
+class OthersInfoScreen extends StatefulWidget {
+  final Map _info;
+
+  const OthersInfoScreen({Key? key, required Map info})
+      : _info = info,
         super(key: key);
 
-  final User? _user;
-
   @override
-  _UserInfoScreenState createState() => _UserInfoScreenState();
+  _OthersInfoScreenState createState() => _OthersInfoScreenState(_info);
 }
 
-class _UserInfoScreenState extends State<UserInfoScreen> {
-  late User _user;
+class _OthersInfoScreenState extends State<OthersInfoScreen> {
+  final Map _info;
+
+  /*
+  "displayName": item[0],
+    "email": item[1],
+    "uid": item[2],
+    "photoURL": item[3],
+    "about": item[4]
+   */
+  _OthersInfoScreenState(info) : _info = info;
+
   bool _isSigningOut = false;
 
   Route _routeToSignInScreen() {
@@ -45,20 +56,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     );
   }
 
+  // void asdf() async {
+  //   info = await fb.getById("Users", _uid);
+  // }
+
   @override
   void initState() {
-    _user = FirebaseAuth.instance.currentUser!;
-
+    // asdf();
     super.initState();
-  }
-
-  Future<DocumentSnapshot> getAboutMe() async {
-    DocumentSnapshot user = await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(FirebaseAuth.instance.currentUser!.uid.toString())
-        .get();
-
-    return user;
   }
 
   @override
@@ -89,12 +94,12 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             );
                           }))),
               Row(),
-              _user.photoURL != null
+              _info['photoURL'] != null
                   ? ClipOval(
                       child: Material(
                         color: CustomColors.firebaseGrey.withOpacity(0.3),
                         child: Image.network(
-                          _user.photoURL!,
+                          _info['photoURL']!,
                           fit: BoxFit.fitHeight,
                         ),
                       ),
@@ -109,7 +114,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
               const SizedBox(height: 8.0),
               Text(
-                _user.displayName!,
+                _info['displayName']!,
                 style: const TextStyle(
                   color: tealC,
                   fontSize: 26,
@@ -117,38 +122,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               ),
               Text("Followers: ",
                   style: const TextStyle(color: Colors.black, fontSize: 26)),
-              const SizedBox(height: 8.0),
-              // Text(
-              //   _user.email!,
-              //   style: const TextStyle(
-              //     color: orangeC,
-              //     fontSize: 20,
-              //     letterSpacing: 0.5,
-              //   ),
-              // ),
               const SizedBox(height: 16.0),
+
               // future builder for displaying the "about" information
 
-              StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection('Users')
-                      .where("uid",
-                          isEqualTo:
-                              FirebaseAuth.instance.currentUser!.uid.toString())
-                      .snapshots(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (!snapshot.hasData) return const SizedBox.shrink();
+              Text(_info['about'] ?? "",
+                  style: const TextStyle(color: Colors.black, fontSize: 26)),
 
-                    final docDataA = (snapshot.data!.docs[0].data());
-                    print("docdata: " + docDataA.toString());
-                    final docData = docDataA! as Map<String, dynamic>;
-                    print("docdata2: " + docData['about'].toString());
-                    final about = (docData['about']).toString();
-
-                    return Text('${about}',
-                        style: const TextStyle(color: Colors.black));
-                  }),
+              ElevatedButton(
+                child: Text("go back"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               const Spacer(),
               _isSigningOut
                   ? const CircularProgressIndicator(

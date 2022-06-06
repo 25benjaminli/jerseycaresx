@@ -72,11 +72,8 @@ class ActualHomepage extends StatelessWidget {
                 return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (BuildContext context, int index) {
-                    print(snapshot.data!.docs.length);
                     final docDataA = (snapshot.data!.docs[index].data());
                     final docData = docDataA! as Map<String, dynamic>;
-                    print("docdata " + index.toString());
-                    print(docData);
                     // final title = (docData['title']);
                     final caption = (docData['caption']);
                     final photoURL = (docData['profileURL']);
@@ -84,7 +81,6 @@ class ActualHomepage extends StatelessWidget {
                     final displayName = (docData['displayName']);
 
                     var username;
-                    print("lol");
                     // grab username from firestore
                     // FirebaseFirestore.instance.collection("Users").doc(docData['uid']).snapshots().listen((snapshot) {
                     //   username = snapshot.data()!['displayName'];

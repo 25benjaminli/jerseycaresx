@@ -85,7 +85,6 @@ class _NavBar extends State<NavBar> {
   ];
 
   void _onItemTappedHamburger(int index) {
-    // print(index);
     selectedBottom = false;
     displayBottom = false;
     setState(() {
@@ -94,7 +93,6 @@ class _NavBar extends State<NavBar> {
   }
 
   void _onItemTappedBottom(int index) {
-    // print(index);
     selectedBottom = true;
     displayBottom = true;
     pressedInvolved = false;

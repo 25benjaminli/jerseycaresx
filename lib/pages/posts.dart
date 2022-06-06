@@ -32,9 +32,7 @@ class _PostsPageState extends State<PostsPage> {
   final Caption = TextEditingController();
   final Title = TextEditingController();
   int? msgNum;
-  
 
-  
   // final  = TextEditingController();
   Future<void> uploadFile(
     String? filepath,
@@ -45,8 +43,7 @@ class _PostsPageState extends State<PostsPage> {
     File f = File(filepath!);
     try {
       await FirebaseStorage.instance.ref('/$filename').putFile(f);
-    } catch(e) {
-      print("errorrr");
+    } catch (e) {
       print(e);
     }
   }
@@ -55,10 +52,11 @@ class _PostsPageState extends State<PostsPage> {
   String fileName = "";
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance.collection('PostTest').snapshots().listen((event) {
-      print("b:" + event.docs.length.toString());
+    FirebaseFirestore.instance
+        .collection('PostTest')
+        .snapshots()
+        .listen((event) {
       msgNum = event.docs.length;
-
     });
     return Scaffold(
         body: Column(
@@ -78,7 +76,7 @@ class _PostsPageState extends State<PostsPage> {
                       Navigator.pop(context);
                     }))),
         SizedBox(height: 30),
-        
+
         TextField(
             decoration: InputDecoration(
               label: Text("Post - Caption"),
@@ -90,30 +88,24 @@ class _PostsPageState extends State<PostsPage> {
         ),
 
         ElevatedButton(
-                child: Text("upload file"),
-                onPressed: () async {
-                  print("message num: " + msgNum.toString());
+            child: Text("upload file"),
+            onPressed: () async {
+              print("message num: " + msgNum.toString());
 
-                  final res = await FilePicker.platform.pickFiles(
-                    allowMultiple: false,
-                    type: FileType.custom,
-                    allowedExtensions: ['png', 'jpg']
-                  );
-                  if (res == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("No File Selected"))
-                    );
-                  }
-                  // make a folder per user
-                  String uid = FirebaseAuth.instance.currentUser!.uid;
-                  path = (res!.files.single.path)!;
-                  String orig = res.files.single.name;
-                  fileName = msgNum.toString() + "-" + uid; // message id, user id.
-
-                  print(path);
-                  print("FILENAME: " + fileName);
-                }
-        ),
+              final res = await FilePicker.platform.pickFiles(
+                  allowMultiple: false,
+                  type: FileType.custom,
+                  allowedExtensions: ['png', 'jpg']);
+              if (res == null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("No File Selected")));
+              }
+              // make a folder per user
+              String uid = FirebaseAuth.instance.currentUser!.uid;
+              path = (res!.files.single.path)!;
+              String orig = res.files.single.name;
+              fileName = msgNum.toString() + "-" + uid; // message id, user id.
+            }),
 
         Align(
             alignment: Alignment.center,
@@ -121,7 +113,7 @@ class _PostsPageState extends State<PostsPage> {
                 icon: Icon(Icons.save),
                 onPressed: () async {
                   await uploadFile(path, fileName);
-                  
+
                   // GET NUMBER
                   final fileStorage = FirebaseStorage.instance;
                   final storage = FirebaseFirestore.instance;
@@ -133,19 +125,25 @@ class _PostsPageState extends State<PostsPage> {
                   //   print(e);
                   // }
                   // print("num: " + num.toString());
-                  String url = await fileStorage.ref().child(msgNum.toString() + "-" + FirebaseAuth.instance.currentUser!.uid.toString()).getDownloadURL();
-                  
+                  String url = await fileStorage
+                      .ref()
+                      .child(msgNum.toString() +
+                          "-" +
+                          FirebaseAuth.instance.currentUser!.uid.toString())
+                      .getDownloadURL();
+
                   FirebaseFirestore.instance.collection("PostTest").doc().set({
-                      // "title": Title.text,
-                      "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
-                      "caption": Caption.text,
-                      "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
-                      "postPhotoURL": url,
-                      "displayName": FirebaseAuth.instance.currentUser!.displayName.toString(),
-                      "msgid": msgNum.toString(),
+                    // "title": Title.text,
+                    "uid": FirebaseAuth.instance.currentUser!.uid.toString(),
+                    "caption": Caption.text,
+                    "profileURL": FirebaseAuth.instance.currentUser!.photoURL,
+                    "postPhotoURL": url,
+                    "displayName": FirebaseAuth
+                        .instance.currentUser!.displayName
+                        .toString(),
+                    "msgid": msgNum.toString(),
                   });
 
-                  
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => NavBar(
@@ -190,6 +188,4 @@ class _PostsPageState extends State<PostsPage> {
       ],
     ));
   }
-
-
-  }
+}

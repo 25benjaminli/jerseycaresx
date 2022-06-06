@@ -34,8 +34,8 @@ class Authentication {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => NavBar(
-            // user: user,
-          ),
+              // user: user,
+              ),
         ),
       );
     }
@@ -47,7 +47,6 @@ class Authentication {
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore f = FirebaseFirestore.instance;
     User? user;
-    print("a");
 
     bool renderHomeScreen = true;
     if (kIsWeb) {
@@ -57,19 +56,15 @@ class Authentication {
         final UserCredential userCredential =
             await auth.signInWithPopup(authProvider);
         user = userCredential.user;
-        print(user);
       } catch (e) {
         print(e);
       }
     } else {
-      print("b");
       final GoogleSignIn googleSignIn = GoogleSignIn();
-      print("c");
 
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
       googleAccount.value = googleSignInAccount;
-      print("d");
 
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
@@ -80,45 +75,37 @@ class Authentication {
           idToken: googleSignInAuthentication.idToken,
         );
 
-
-
-
-
-
-
         // sign in with credential, set the current user to this one.
         try {
           final UserCredential userCredential =
               await auth.signInWithCredential(credential);
 
           user = userCredential.user;
-          CollectionReference users = f.collection("Users"); 
-          var docref = f.collection("Users").doc(auth.currentUser!.uid.toString());
+          CollectionReference users = f.collection("Users");
+          var docref =
+              f.collection("Users").doc(auth.currentUser!.uid.toString());
           var doc = await docref.get();
           // SWAPPED FOR DEVELOPMENT PURPOSES
-          if (!doc.exists){ // !doc.exists
-          // render sign up features
+          if (!doc.exists) {
+            // !doc.exists
+            // render sign up features
 
             f.collection("Users").doc(auth.currentUser!.uid.toString()).update({
-            "displayName": auth.currentUser!.displayName,
-            "email": auth.currentUser!.email,
-            "photoURL": auth.currentUser!.photoURL,
-            "uid": auth.currentUser!.uid.toString(),
+              "displayName": auth.currentUser!.displayName,
+              "email": auth.currentUser!.email,
+              "photoURL": auth.currentUser!.photoURL,
+              "uid": auth.currentUser!.uid.toString(),
             });
-             Navigator.of(context).push(
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => SignUpPage(
-                  // user: user,
-                ),
+                    // user: user,
+                    ),
               ),
             );
 
             renderHomeScreen = false;
-
-            
           }
-          
-
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             ScaffoldMessenger.of(context).showSnackBar(

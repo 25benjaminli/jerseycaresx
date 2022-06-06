@@ -31,8 +31,6 @@ Future<List> getAll(String collection) async {
       .collection(collection)
       .get()
       .then((value) {
-    print("gotten value");
-    print(value.docs.map((e) => e.data()).toList());
     return value.docs.map((e) => e.data()).toList();
   });
 }
